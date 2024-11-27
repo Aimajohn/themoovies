@@ -4,6 +4,10 @@ export default {
     content: ["./index.html", "./src/**/*.{html,js,ts,jsx,tsx,css}"],
   theme: {
   	extend: {
+		fontFamily: {
+			"Urbanist": ['Urbanist', 'sans-serif'],
+			"Inter": ['Inter', 'sans-serif']
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

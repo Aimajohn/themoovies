@@ -1,36 +1,65 @@
-import React from 'react'
-import Logo from '../imgs/logo.png'
-
+import Logo from '@/imgs/logo2.png'
+import {NavLink} from 'react-router'
+import {
+    navigationMenuTriggerStyle,
+    NavigationMenu,
+    NavigationMenuList,
+    NavigationMenuItem,
+    NavigationMenuContent,
+    NavigationMenuTrigger,
+    NavigationMenuLink,
+    NavigationMenuIndicator,
+    NavigationMenuViewport,
+  }
+   from "@/components/ui/navigation-menu";
+import {Link} from 'react-router'
+import {Input} from '@/components/ui/input'
 type Props = {}
 
 function Header({}: Props) {
   return (
-    <header className="absolute lg:relative z-10 h-28 flex flex-row p-2 justify-center items-center w-full font-poppins text-xl font-semibold text-gray-100 lg:justify-between lg:text-sm lg:font-light lg:h-16  
-    ">
-        <button id="backButton" type="button" className="p-5 material-symbols-rounded text-gray-100 absolute z-20 left-4 lg:hidden">
-            arrow_back_ios_new
-        </button>
-        <a href="#home" id="pageLogo" className="w-56 lg:w-40 lg:!block lg:ml-3">
-            <img  className="object-fit" src={Logo} alt="The Moovies Logo"/>
-        </a>
-        <div className="hidden lg:flex lg:justify-end w-1/2 ">
-            <a href="#trends" className="px-2 mx-2 hover:underline">
-                Tendencias
-            </a>
-            <a href="#trends" className="px-2 mx-2 hover:underline">
-                Peliculas similares
-            </a>
+    <header className='w-full flex justify-between px-4 py-4 from-[#04021a] bg-gradient-to-b to-to-[#000000]'>
+       <NavigationMenu>
+            <NavigationMenuList>
+               
+                <NavigationMenuItem>
+                    <NavigationMenuItem>
+                        <NavLink to='/' id="pageLogo" className="w-56 lg:w-40 lg:!block lg:ml-3">
+                            <img  className="object-fit" src={Logo} alt="The Moovies Logo"/>
+                        </NavLink>
+                    </NavigationMenuItem>
+                </NavigationMenuItem>
 
-        </div>
+            </NavigationMenuList>
 
-        <div id="searchPageTitle" className="flex items-center flex-col ">
-            <h2 >Results</h2>
-            <span className="text-sm text-gray-400 font-montserrat" id="searchInputText">for "Avengers"</span>
-        </div>
+       </NavigationMenu>
+        <NavigationMenu className="w-full flex justify-between ">
+            
+            <NavigationMenuList>
+                <NavigationMenuItem>
+                    <NavLink to='/trending'>
+                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                            Tendencias
+                        </NavigationMenuLink>
+                    </NavLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                    <NavLink to='/simialars'>
+                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                            Peliculas Similares
+                        </NavigationMenuLink>
+                    </NavLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                    <Link to='https://github.com/Aimajohn'>
+                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                Github
+                        </NavigationMenuLink>
+                    </Link>
+                </NavigationMenuItem>
+            </NavigationMenuList>
+        </NavigationMenu>
 
-        <button id="tuneButton" type="button" className="hidden p-5 material-symbols-rounded text-gray-100 right-4 absolute z-20">
-        tune
-        </button>
     </header>
   )
 }
