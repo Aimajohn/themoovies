@@ -5,6 +5,7 @@ import Header from './components/Header'
 import SectionContainer from './components/SectionContainer'
 import Hero from './components/Hero'
 import './App.css'
+import Footer from './components/Footer'
 
 import {getMovie, getHero} from './API_LOGIC'
 
@@ -20,7 +21,13 @@ function  App() {
     <div className='bg-primary relative z-[-2]'>
       <Header ></Header>
       <Hero></Hero>
-      <SectionContainer></SectionContainer>
+      <div>
+      <SectionContainer title='Tendencias'></SectionContainer>
+      <SectionContainer title='Películas Similares'></SectionContainer>
+      <SectionContainer title='Tus películas favoritas'></SectionContainer>
+      </div>
+      <Footer></Footer>
+      
     </div>
   )
 }
