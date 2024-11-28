@@ -7,7 +7,7 @@ type Props = {}
 
 function Hero({}: Props) {
   return (
-    <div className='w-full text-slate-100 font-Urbanist' >
+    <div className='w-full text-slate-100 font-Urbanist overflow-hidden relative pt-20 pb-4 before:absolute before:w-full before:h-20 before:bottom-0 before:bg-gradient-to-t before:from-primary' >
         <div className='absolute z-[-1] overflow-hidden w-full h-500   before:w-full before:h-1/2 before:absolute before:bottom-0 before:right-0 before:bg-gradient-to-b before:from-transparent before:to-darkblue lg:-mt-20 after:w-full after:absolute after:h-20 lg:after:bg-gradient-to-t lg:after:from-transparent lg:after:to-darkblue2 lg:after:bg-opacity-50 after:top-0 after:left-0 bg-gray-500'>
             <img src={heroImg} alt="heroPoster" />
         </div>
@@ -26,7 +26,7 @@ function Hero({}: Props) {
             </div>
             <div className='h-full mb-12 mr-10 font-semibold -mt-12 lg:text-xl flex flex-col items-end'>
                 <h3 className='text-2xl font-bold'>Sonic 3: La película</h3>
-                <div className='w-auto ml-auto'>
+                <div className='w-auto ml-auto '>
                 <Badge  className={badgeVariants({variant: 'secondary'})} >Imdb 5.5</Badge>   
                 </div>
             </div>

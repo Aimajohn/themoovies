@@ -17,7 +17,7 @@ function  App() {
 
   }
   return (
-    <div >
+    <div className='bg-primary relative z-[-2]'>
       <Header ></Header>
       <Hero></Hero>
       <SectionContainer></SectionContainer>

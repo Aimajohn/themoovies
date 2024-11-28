@@ -18,7 +18,7 @@ type Props = {}
 
 function Header({}: Props) {
   return (
-    <header className='w-full flex justify-between px-4 py-4 from-[#04021a] bg-gradient-to-b to-to-[#000000]'>
+    <header className='w-full fixed top-0 right-0 flex justify-between px-4 py-4 from-[#04021a] bg-gradient-to-b to-to-[#000000]'>
        <NavigationMenu>
             <NavigationMenuList>
                
