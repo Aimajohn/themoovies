@@ -8,9 +8,7 @@ type Props = {}
 function Hero({}: Props) {
   return (
     <div className='w-full text-slate-100 font-Urbanist overflow-hidden relative pt-20 pb-4 before:absolute before:w-full before:h-20 before:bottom-0 before:bg-gradient-to-t before:from-primary' >
-        <div className='absolute z-[-1] overflow-hidden w-full h-500   before:w-full before:h-1/2 before:absolute before:bottom-0 before:right-0 before:bg-gradient-to-b before:from-transparent before:to-darkblue lg:-mt-20 after:w-full after:absolute after:h-20 lg:after:bg-gradient-to-t lg:after:from-transparent lg:after:to-darkblue2 lg:after:bg-opacity-50 after:top-0 after:left-0 bg-gray-500'>
-            <img src={heroImg} alt="heroPoster" />
-        </div>
+       
             <div className='mx-10 pt-20 xl:w-1/3 lg:w-3/5'>
                 <h2 className='before:w-10/12 font-bold before:h-px before:bg-white before:absolute before:top-3 before:right-0 relative '>Bienvenido</h2>
                 <div>
