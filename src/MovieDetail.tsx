@@ -6,25 +6,45 @@ import {Button, buttonVariants} from '@/components/ui/button'
 import {Badge} from '@/components/ui/badge'
 import CrewCard from '@/components/CrewCard'
 import movieFace from '@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg'
+import heroImg from '@/imgs/m2teNSCH7sxkuXHossRJXhxPKeT.jpg'
+import {Card, CardContent, CardDescription, CardTitle, CardHeader} from '@/components/ui/card'
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 function MovieDetail() {
+  const percentage = 6.6
   return (
 
-    <div>
+    <div className='relative min-h-svh text-slate-100'>
+        <div className='top-0 left-0 absolute z-[-1]'>
+          <HeroBackground heroImg={heroImg}></HeroBackground>
+        </div>
         <Header ></Header>
-        <div>
-          <HeroBackground heroImg='hola'></HeroBackground>
-          <div>
-            <section>
-              <div>
-                <img src={movieFace} alt="caratula movie" />
+        <div className='pt-80'>
+          <div className='flex gap-10 px-10 bg-primary'>
+            <section 
+            // className='w-1/4'
+            >
+              <div className=' flex flex-col mt-12 pt-8'>
+                <div className='rounded-xl w-80 overflow-hidden shadow-lg'>
+                  <img src={movieFace} alt="caratula" />
                 </div>
-                <div>
-                  <span>82%</span>
-                  <span>followers</span>
+                <div className='flex items-center mt-4 h-20 ' >
+                    <CircularProgressbar className='w-1/3 h-16 font-bold ' strokeWidth={7.5} maxValue={10} value={percentage} text={`${percentage}`}  styles={buildStyles({
+                        pathColor: `rgb(234, 179, 8)`,
+                        textColor: '#f3f7f2',
+                        textSize: '2rem',
+                        trailColor: '#060606'
+                      })} />
+                  <div className=' w-2/3 '>
+                  <p><b>158,675 </b>ratings</p>
+                  <p><b>84 </b>reviews</p>
+                  </div>
                 </div>
+              </div>
+
             </section>
-            <section>
+            <section className='w-1/2'>
               <article>
                 <h2>
                   Money Heist

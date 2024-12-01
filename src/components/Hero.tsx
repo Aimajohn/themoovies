@@ -3,12 +3,13 @@ import heroImg from '@/imgs/m2teNSCH7sxkuXHossRJXhxPKeT.jpg'
 import {Button, buttonVariants} from '@/components/ui/button'
 import {Badge, badgeVariants} from '@/components/ui/badge'
 import {NavLink} from 'react-router'
+import HeroBackground from '@/components/ui/hero-background'
 type Props = {}
 
 function Hero({}: Props) {
   return (
     <div className='w-full text-slate-100 font-Urbanist overflow-hidden relative pt-20 pb-4 before:absolute before:w-full before:h-20 before:bottom-0 before:bg-gradient-to-t before:from-primary' >
-       
+            <HeroBackground heroImg={heroImg}></HeroBackground>
             <div className='mx-10 pt-20 xl:w-1/3 lg:w-3/5'>
                 <h2 className='before:w-10/12 font-bold before:h-px before:bg-white before:absolute before:top-3 before:right-0 relative '>Bienvenido</h2>
                 <div>
