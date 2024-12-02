@@ -6,7 +6,7 @@ export default {
   	extend: {
 		colors: {
 			primary: '#04021a', // Custom color for primary
-			secondary: '#1E3A8A',
+			secondary: '#eab308',
 		},
 		fontFamily: {
 			"Urbanist": ['Urbanist', 'sans-serif'],

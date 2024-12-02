@@ -18,7 +18,7 @@ function  App() {
 
   }
   return (
-    <div className='bg-primary relative z-[-2]'>
+    <div className='relative pb-20' >
       <Header ></Header>
       <Hero></Hero>
       <div>

@@ -10,23 +10,34 @@ import heroImg from '@/imgs/m2teNSCH7sxkuXHossRJXhxPKeT.jpg'
 import {Card, CardContent, CardDescription, CardTitle, CardHeader} from '@/components/ui/card'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { FaShareAlt, FaBookmark, FaPlay } from "react-icons/fa";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
 
 function MovieDetail() {
   const percentage = 6.6
   return (
 
     <div className='relative min-h-svh text-slate-100'>
-        <div className='top-0 left-0 absolute z-[-1]'>
-          <HeroBackground heroImg={heroImg}></HeroBackground>
-        </div>
         <Header ></Header>
-        <div className='pt-80'>
-          <div className='flex gap-10 px-10 bg-primary'>
+        <div className='top-0 left-0 absolute z-[-1] h-[40svh] overflow-hidden  before:w-full before:absolute before:bottom-0 before:left-0 before:h-1/2 before:from-transparent before:bg-gradient-to-b before:to-primary'>
+          <HeroBackground className="" heroImg={heroImg}></HeroBackground>
+        </div>
+        <div className='pt-64 relative ml-24 mr-8'>
+          <div className='flex gap-10 pt-8 '>
             <section 
-            // className='w-1/4'
+            className='w-1/5'
             >
-              <div className=' flex flex-col mt-12 pt-8'>
-                <div className='rounded-xl w-80 overflow-hidden shadow-lg'>
+              <div className=' flex flex-col '>
+                <div className='rounded-xl w-4/5 overflow-hidden shadow-lg'>
                   <img src={movieFace} alt="caratula" />
                 </div>
                 <div className='flex items-center mt-4 h-20 ' >
@@ -44,19 +55,19 @@ function MovieDetail() {
               </div>
 
             </section>
-            <section className='w-1/2'>
+            <section className='w-3/5'>
               <article>
-                <h2>
+                <h1 className='text-3xl font-Poppins font-bold tracking-wide'>
                   Money Heist
-                </h2>
-                <p>Original title: La casa de papel</p>    
-                <h4>Series (2017-2021) * 5 seasons * 48 episodes</h4>
-                <div>
-                  <Button>Watch trailer <span>P</span></Button>
-                  <div>Guard</div>
-                  <div>Share</div>
+                </h1>
+                <p className='text-sm font-light leading-loose'>Original title: La casa de papel</p>    
+                <h4 className='text-slate-200 leading-loose font-semibold'>Series (2017-2021) * 5 seasons * 48 episodes</h4>
+                <div className='my-4 flex gap-3 items-center'>
+                  <Button className='font-semibold font-Urbanist text-lg px-5 py-6' variant='secondary'>Watch trailer <FaPlay/></Button>
+                  <Button size='iconMain' variant='ghost'><FaBookmark/></Button>
+                  <Button size='iconMain' variant='ghost'><FaShareAlt/></Button>
                 </div>
-                <p>
+                <p className='w-4/5 text-slate-200 my-8'>
                   A criminal mastermind who goes by «The Professor» has a plan to pull off the
                   biggest heist in recorded history — to print billions of euros in the Royal Mint
                   of Spain. To help him carry out the ambitious plan, he recruits eight people with
@@ -66,32 +77,37 @@ function MovieDetail() {
                 </p>
                 
               </article>
+            
+
               <article>
-                <h2>Details</h2>
-                <div>
-                  <div>
-                    <h4>Genres</h4>
-                    <div>
+                <h2 className='text-2xl font-Poppins font-semibold tracking-wide'>Details</h2>
+                <Table>
+                <TableBody>
+                  <TableRow>
+                    <TableHead className="text-left">Genres</TableHead>
+                    <TableCell className="font-medium flex gap-1">
                       <Badge>Action</Badge>
                       <Badge>Crime</Badge>
                       <Badge>Drama</Badge>
                       <Badge>Thriller</Badge>
-                    </div>
-                  </div>
-                  <div>
-                    <h4>Country of origin</h4>
-                    <p>Spain</p>
-                  </div>
-                  <div>
-                    <h4>Runtime</h4>
-                    <p>50 min</p>
-                  </div>
-                </div>
+                      </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableHead className="text-left">Country of Origin</TableHead>
+                    <TableCell className="font-medium">Spain</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableHead className="text-left">Runtime</TableHead>
+                    <TableCell className="font-medium">50 min</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+                
               </article>
 
             </section>
-            <section>
-              <h3>Cast & Crew</h3>
+            <section className='w-1/5'>
+              <h3 className='font-bold text-xl tracking-wide font-Poppins mb-4'>Cast & Crew</h3>
               <div>
                 <CrewCard></CrewCard>
                 <CrewCard></CrewCard>

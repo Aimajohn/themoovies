@@ -6,7 +6,7 @@ type Props = {}
 
 function Footer({}: Props) {
   return (
-        <footer className='bg-yellow-500 flex justify-between py-2 px-8'>
+        <footer className='bg-yellow-500 flex justify-between py-2 px-8 absolute bottom-0 w-full h-16'>
             <div className='flex items-center'>
                 <div className='text-center flex items-center flex-col mr-8'>
                     <img src={Logo} className='w-10' alt="Aimajohn Logo" />
