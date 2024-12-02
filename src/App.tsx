@@ -9,22 +9,22 @@ import Footer from './components/Footer'
 
 import {getMovie, getHero} from './API_LOGIC'
 
+const movies = await getMovie() 
+
 function  App() {
   const [count, setCount] = useState(0)
-  const movies =  getMovie()
-  console.log(movies)
-  if (movies != undefined){
-    // getHero(movies[0].id, window.innerWidth)
+  // if (movies != undefined){
+  //   // getHero(movies[0].id, window.innerWidth)
 
-  }
+  // }
   return (
     <div className='relative pb-20' >
-      <Header ></Header>
+      {/* <Header ></Header> */}
       <Hero></Hero>
       <div>
-      <SectionContainer title='Tendencias'></SectionContainer>
-      <SectionContainer title='Películas Similares'></SectionContainer>
-      <SectionContainer title='Tus películas favoritas'></SectionContainer>
+      <SectionContainer movieList={movies} title='Tendencias'></SectionContainer>
+      <SectionContainer movieList={movies} title='Películas Similares'></SectionContainer>
+      <SectionContainer movieList={movies} title='Tus películas favoritas'></SectionContainer>
       </div>
       <Footer></Footer>
       

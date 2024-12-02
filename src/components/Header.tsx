@@ -51,11 +51,11 @@ function Header({}: Props) {
                     </NavLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link to='https://github.com/Aimajohn'>
+                    <NavLink to='https://github.com/Aimajohn'>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 Github
                         </NavigationMenuLink>
-                    </Link>
+                    </NavLink>
                 </NavigationMenuItem>
             </NavigationMenuList>
         </NavigationMenu>

@@ -11,7 +11,9 @@ const api = axios.create({
     }
 })
 
-type movie = {
+console.log('hola')
+
+export type movie = {
     adult: string;
     backdrop_path: string;
     genre_ids: number[];
@@ -28,6 +30,9 @@ type movie = {
     vote_count: number
 }
 
+export type movie_list<movie> = {
+    [key: string]: movie;
+  };
 
 interface movies<T> {
     [Key: number]: T;
@@ -38,8 +43,6 @@ export const getMovie = async () => {
         let movies: movies<movie>  = {}
         const response: AxiosResponse = await api.get('/movie/popular')
         const data: [movie] = response.data.results
-
-
         data.forEach(movie =>{
             movies[movie.id] = movie
         })
