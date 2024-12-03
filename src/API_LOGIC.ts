@@ -13,7 +13,7 @@ const api = axios.create({
 
 console.log('hola')
 
-export type movie = {
+export type MovieT = {
     adult: string;
     backdrop_path: string;
     genre_ids: number[];
@@ -30,28 +30,24 @@ export type movie = {
     vote_count: number
 }
 
-export type movie_list<movie> = {
-    [key: string]: movie;
-  };
-
-interface movies<T> {
-    [Key: number]: T;
-}
 
 export const getMovie = async () => {
     try{
-        let movies: movies<movie>  = {}
+        
+        // let movies: movies<movie>  = {}
+        // data.forEach(movie =>{
+        //     movies[movie.id] = movie
+        // })
         const response: AxiosResponse = await api.get('/movie/popular')
-        const data: [movie] = response.data.results
-        data.forEach(movie =>{
-            movies[movie.id] = movie
-        })
+        const data: MovieT[] = response.data.results
         return (data)
     }
     catch(error){
-        console.log(error)
+        return undefined
     }
 }
+
+const movieList = getMovie()
 
 
 async function whichSize(width: number){

@@ -1,16 +1,12 @@
-import React from 'react'
 import MovieCard from '@/components/MovieCard'
-import {movie, movie_list} from '@/API_LOGIC'
-type Props = {title: string, movieList: [movie] | undefined }
+
+import {MovieT} from '@/API_LOGIC'
+type Props = {title: string, movieList: MovieT[] | null }
 
 
-const lista = []
-movieList.forEach(movie => {
-  lista.push(
-    'hola'
-  )
-});
 function SectionContainer({title, movieList}: Props) {
+
+
   return (
     <div className='px-10 mb-8'>
       <h3 className='text-slate-100 mb-6 text-2xl font-bold font-Poppins'>{title}</h3>

@@ -1,10 +1,13 @@
-import React from 'react'
 import movieImg from '@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg'
 import {Badge, badgeVariants} from '@/components/ui/badge'
 import { Button, buttonVariants } from './ui/button'
+
+import {useState} from 'react'
 type Props = {}
 
 function MovieCard({}: Props) {
+  const [loading, setLoading] = useState(true)
+  
   return (
     <div className='relative flex rounded-md w-52 h-72 overflow-hidden'>
         <div className='absolute z-[-1] rounded-xl overflow-hidden w-52 '>
