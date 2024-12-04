@@ -3,15 +3,15 @@ import axios, { AxiosResponse, AxiosRequestConfig, RawAxiosRequestHeaders, Axios
 
 // Header functions
 
+
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3',
     params:{
-        api_key: '41f595b6e9a3306dcd645e1eab82f413',
+        api_key: import.meta.env.VITE_SECRET_KEY,
         language: navigator.language
     }
 })
 
-console.log('hola')
 
 export type MovieT = {
     adult: string;

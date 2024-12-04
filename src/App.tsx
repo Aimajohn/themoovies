@@ -6,7 +6,6 @@ import './App.css'
 import Footer from './components/Footer'
 
 import {getMovie, getHero, MovieT} from './API_LOGIC'
-
 function  App() {
 
   const [listaMovies, setListaMovies] = useState<MovieT[] | null>(null)
