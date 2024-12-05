@@ -11,7 +11,8 @@ export default {
 		fontFamily: {
 			"Urbanist": ['Urbanist', 'sans-serif'],
 			"Poppins": ['Poppins', 'sans-serif'],
-			"Inter": ['Inter', 'sans-serif']
+			"Inter": ['Inter', 'sans-serif'],
+			"Montserrat": ['Montserrat', 'Urbanist', 'sans-serif']
 		},
   		borderRadius: {
   			lg: 'var(--radius)',
