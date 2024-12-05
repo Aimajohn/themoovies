@@ -139,7 +139,6 @@ export async function getHero(id:number, width:number){
     }
     return (data)
 
-    return data
     // heroMovieTitle.textContent = data.title
     // heroMovieScore.textContent = redondear(data.vote_average)
     // movieDescriptionText.textContent = data.overview

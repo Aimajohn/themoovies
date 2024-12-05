@@ -9,7 +9,7 @@ function SectionContainer({title, movieList}: Props) {
 
   movieList?.forEach(movie =>{
     arrayMovies.push(
-      <MovieCard calificacion={movie.vote_average} titulo={movie.title} imagenSrc={'https://image.tmdb.org/t/p/w342/'+movie.poster_path}></MovieCard>
+      <MovieCard calificacion={movie.vote_average} idPelicula={movie.id} titulo={movie.title} imagenSrc={'https://image.tmdb.org/t/p/w342/'+movie.poster_path}></MovieCard>
     )
   })
 

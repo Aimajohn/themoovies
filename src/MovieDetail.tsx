@@ -25,7 +25,7 @@ import {redondearF} from '@/API_LOGIC'
 
 function MovieDetail() {
   const {id} = useParams<{ id: string }>()
-  const [movie, setMovie] = useState<MovieDetailedT|null>()
+  const [movie, setMovie] = useState<MovieDetailedT|null>(null)
   const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
@@ -75,7 +75,7 @@ function MovieDetail() {
             >
               <div className=' flex flex-col '>
                 <div className='rounded-xl w-4/5 overflow-hidden shadow-lg'>
-                  <img src={movieFace} alt="caratula" />
+                  <img src={"https://image.tmdb.org/t/p/w342"+movie?.poster_path} alt="caratula" />
                 </div>
                 <div className='flex items-center mt-4 h-20 ' >
                     <CircularProgressbar className='w-1/3 h-16 font-bold ' strokeWidth={7.5} maxValue={10} value={redondearF(movie?.vote_average)} text={`${movie?.vote_average}`}  styles={buildStyles({
@@ -100,7 +100,7 @@ function MovieDetail() {
                 <p className='text-sm font-light leading-loose'>Original title: {movie?.original_title}</p>
                 <h4 className='text-slate-200 leading-loose font-semibold'>Movie ({movie?.release_date})</h4>
                 <div className='my-4 flex gap-3 items-center'>
-                  <Button className='font-semibold font-Urbanist text-lg px-5 py-6' variant='secondary'>Watch trailer <FaPlay/></Button>
+                  <Button className='font-semibold font-Urbanist text-lg px-5 py-6' variant='secondary'>Watch trailer {movie?.homepage}<FaPlay/></Button>
                   <Button size='iconMain' variant='ghost'><FaBookmark/></Button>
                   <Button size='iconMain' variant='ghost'><FaShareAlt/></Button>
                 </div>
@@ -118,7 +118,9 @@ function MovieDetail() {
                   <TableRow>
                     <TableHead className="text-left">Genres</TableHead>
                     <TableCell className="font-medium flex gap-1">
-                      {...genreGenerator(movie?.genres)}
+                      {
+                        (!movie)? <p></p> : [...genreGenerator(movie.genres)]
+                      }
                       </TableCell>
                   </TableRow>
                   <TableRow>
