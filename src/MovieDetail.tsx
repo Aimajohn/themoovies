@@ -19,25 +19,40 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import {useParams} from 'react-router'
-import {getHero, MovieDetailedT, MovieT} from '@/API_LOGIC'
+import {NavLink, useParams} from 'react-router'
+import {CastMemberT, getCredits, getHero, getMovie, MovieCreditsResponseT, MovieDetailedT, MovieT, redondear} from '@/API_LOGIC'
 import {redondearF} from '@/API_LOGIC'
+import SectionContainer from './components/SectionContainer'
 
 function MovieDetail() {
   const {id} = useParams<{ id: string }>()
+  const [movieId, setMovieId] = useState<number>(Number(id))
   const [movie, setMovie] = useState<MovieDetailedT|null>(null)
+  const [recommended, setRecommended] = useState<MovieT[]|null>(null)
+  const [crewCast, setCrewCast] = useState<MovieCreditsResponseT|null>(null)
   const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     setLoading(true)
+
     const getDetails = async ()  => {
       try{
-          const idPelicula = Number(id)
+          const idPelicula = Number(movieId)
           if(isNaN(idPelicula)) throw new Error('Parametro no es un numero') 
-          const pelicula = await getHero(idPelicula, 780)
-          if (!pelicula) return null
+            
+          const [pelicula, lista, actores] = await Promise.all([
+            getHero(idPelicula, 780), 
+            getMovie('recommendations', Number(id)),
+            getCredits(Number(id))
+          ]) 
+
+          if (!pelicula) throw new Error('No se pudo obtener lista')         
+          if(!lista) throw new Error('No se pudo obtener lista')
+          if(!actores) throw new Error('No se pudo obtener actores')
+
           setMovie(pelicula)
-          
+          setRecommended(lista)
+          setCrewCast(actores)
         }catch(error){
           console.error('ijole pa')
         }finally{
@@ -45,7 +60,7 @@ function MovieDetail() {
         }
     }
     getDetails()
-  }, [])
+  }, [movieId])
 
     const genreGenerator = (miLista: {id: number;name: string;}[] | undefined)=>{ 
       if (!miLista) return []
@@ -55,15 +70,24 @@ function MovieDetail() {
         keymaster++
         genresList.push(<Badge key={keymaster}>{pelicula.name}</Badge>)
       }
-      console.log(genresList)
       return genresList
-  }
+    }
+
+    const castGenerator = (movieCast: MovieCreditsResponseT) =>{
+      const returnValue:JSX.Element[]  = []
+      movieCast.cast.slice(0,5).forEach(member =>{
+        returnValue.push(
+          <CrewCard miembro={member}></CrewCard>
+        )
+      })
+      return returnValue
+    }
    
 
   
   return (
 
-    <div className='relative min-h-svh text-slate-100'>
+    <div className='relative min-h-svh text-slate-100 pb-20'>
         <Header ></Header>
         <div className='top-0 left-0 absolute z-[-1] h-[40svh] overflow-hidden  before:w-full before:absolute before:bottom-0 before:left-0 before:h-1/2 before:from-transparent before:bg-gradient-to-b before:to-primary'>
           <HeroBackground className="" heroImg={'https://image.tmdb.org/t/p/original/'+ movie?.backdrop_path || heroImg}></HeroBackground>
@@ -78,7 +102,7 @@ function MovieDetail() {
                   <img src={"https://image.tmdb.org/t/p/w342"+movie?.poster_path} alt="caratula" />
                 </div>
                 <div className='flex items-center mt-4 h-20 ' >
-                    <CircularProgressbar className='w-1/3 h-16 font-bold ' strokeWidth={7.5} maxValue={10} value={redondearF(movie?.vote_average)} text={`${movie?.vote_average}`}  styles={buildStyles({
+                    <CircularProgressbar className='w-1/3 h-16 font-bold ' strokeWidth={7.5} maxValue={10} value={redondearF(movie?.vote_average)} text={`${redondearF(movie?.vote_average)}`}  styles={buildStyles({
                         pathColor: `rgb(234, 179, 8)`,
                         textColor: '#f3f7f2',
                         textSize: '2rem',
@@ -86,7 +110,7 @@ function MovieDetail() {
                       })} />
                   <div className=' w-2/3 '>
                   <p><b>{movie?.vote_count} </b>ratings</p>
-                  <p><b>84 </b>reviews</p>
+                  <p><b>{movie?.popularity} </b>views</p>
                   </div>
                 </div>
               </div>
@@ -100,16 +124,22 @@ function MovieDetail() {
                 <p className='text-sm font-light leading-loose'>Original title: {movie?.original_title}</p>
                 <h4 className='text-slate-200 leading-loose font-semibold'>Movie ({movie?.release_date})</h4>
                 <div className='my-4 flex gap-3 items-center'>
-                  <Button className='font-semibold font-Urbanist text-lg px-5 py-6' variant='secondary'>Watch trailer {movie?.homepage}<FaPlay/></Button>
+                  <Button className=' font-semibold font-Urbanist text-lg px-5 py-6' variant='secondary'>
+                    <NavLink className='flex items-center gap-2' to={ movie? movie.homepage : 'https://www.youtube.com/'}>
+                      Watch trailer <FaPlay />
+                    </NavLink>
+                    </Button>
                   <Button size='iconMain' variant='ghost'><FaBookmark/></Button>
                   <Button size='iconMain' variant='ghost'><FaShareAlt/></Button>
                 </div>
                 <p className='w-4/5 text-slate-200 my-8'>
-                 {movie?.overview}
+                  {movie
+                    ? movie.overview ? movie.overview : 'No description' 
+                    : 'No description'
+                  }
                 </p>
 
               </article>
-
 
               <article>
                 <h2 className='text-2xl font-Poppins font-semibold tracking-wide'>Details</h2>
@@ -140,15 +170,16 @@ function MovieDetail() {
             <section className='w-1/5'>
               <h3 className='font-bold text-xl tracking-wide font-Poppins mb-4'>Cast & Crew</h3>
               <div>
-                <CrewCard></CrewCard>
-                <CrewCard></CrewCard>
-                <CrewCard></CrewCard>
-                <CrewCard></CrewCard>
+                {crewCast? castGenerator(crewCast):'None'}
               </div>
               <Button>Show all</Button>
             </section>
           </div>
         </div>
+        <div className='m-14 ml-24 '>
+          <SectionContainer setMovieId={setMovieId} movieList={recommended} title='Recomendaciones' scrollType='flex-wrap'></SectionContainer>
+        </div>
+
         <Footer></Footer>
 
     </div>

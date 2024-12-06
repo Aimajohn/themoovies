@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none dark:focus-visible:ring-slate-300",
+"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 dark:focus-visible:ring-slate-300",
   {
     variants: {
       variant: {
@@ -15,17 +15,18 @@ const buttonVariants = cva(
           "bg-red-500 text-slate-50 shadow-sm hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90",
         outline:
           "border border-slate-200 bg-white shadow-sm hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
-          secondary:
-          "bg-secondary text-slate-900 shadow-sm hover:bg-yellow-500/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80 ",
-        ghost: 
-          "hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50",
-        link: 
-          "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
-        genre:
-          "bg-slate-800 shadow-lg bg-opacity-70 text-slate-200 shadow-sm hover:bg-slate-500/80 dark:bg-slate-200 dark:text-slate-50 dark:hover:bg-slate-800/80",
-          love:
+        love:
           "bg-slate-200 text-slate-50 shadow-sm hover:bg-slate-400 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90"
         ,
+        secondary:
+          "bg-secondary text-slate-900 shadow-sm hover:bg-yellow-500/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80 "
+        ,
+        genre:
+          "bg-slate-700 shadow-lg bg-opacity-70 text-slate-200 shadow-sm hover:bg-slate-500/80 dark:bg-slate-400 dark:text-slate-50 dark:hover:bg-slate-800/80"
+        ,
+        ghost: "bg-slate-700 rounded-full hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50"
+        ,
+        link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
       },
       size: {
         default: "h-9 px-4 py-2",

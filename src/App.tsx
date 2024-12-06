@@ -10,6 +10,7 @@ import {getMovie, getHero, MovieT, MovieDetailedT} from './API_LOGIC'
 function  App() {
 
   const [listaMovies, setListaMovies] = useState<MovieT[] | null>(null)
+  const [movieId, setMovieId] = useState<number>(Number(0))
   const [hero, setHero] = useState<MovieDetailedT | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string|null>(null)
@@ -24,7 +25,6 @@ function  App() {
           return;
         }
         setListaMovies(pelis)
-        console.log(pelis)
         const movieHero = await getHero(pelis[0].id, 780)
         if (!movieHero) return console.error("Error: NO se pudo cargar el Hero")
         setHero(movieHero)
@@ -52,10 +52,16 @@ function  App() {
       <div className='w-full '>
         <Hero movieData={hero}></Hero>
       </div>
-      <div className=''>
-      <SectionContainer movieList={listaMovies} title='Tendencias'></SectionContainer>
-      <SectionContainer movieList={listaMovies} title='Películas Similares'></SectionContainer>
-      <SectionContainer movieList={listaMovies} title='Tus películas favoritas'></SectionContainer>
+      <div className='m-9 mb-0 pb-20'>
+        <div className='overflow-x-scroll scroll-fix'>
+            <SectionContainer setMovieId={setMovieId} movieList={listaMovies} title='Tendencias'></SectionContainer>
+        </div>
+        <div className='overflow-x-scroll scroll-fix'>
+          <SectionContainer setMovieId={setMovieId} movieList={listaMovies} title='Películas Similares'></SectionContainer>
+          </div>
+        <div className='overflow-x-scroll scroll-fix'>
+          <SectionContainer setMovieId={setMovieId} movieList={listaMovies} title='Tus películas favoritas'></SectionContainer>
+        </div>
       </div>
       <Footer></Footer>
       

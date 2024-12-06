@@ -1,0 +1,88 @@
+import React from 'react'
+import { Button, buttonVariants } from './ui/button'
+import {NavLink} from 'react-router'
+import { TbSwords, TbHeartFilled, TbGhost2Filled  } from "react-icons/tb";
+import { FaMasksTheater, FaDumpsterFire } from "react-icons/fa6";
+import { PiMoonStarsFill, PiSwordFill  } from "react-icons/pi";
+import { RiSwordFill } from "react-icons/ri";
+import { ImPacman } from "react-icons/im";
+
+
+type Props = {}
+// Acción
+// Romance
+// Terror
+// Animación
+// Comedia
+// Aventura
+// Crimen
+// Fantasía
+
+
+const genres = [
+    {
+      "id": 28,
+      "name": "Acción",
+      "icon": <RiSwordFill/>
+    },
+    {
+        "id": 35,
+        "name": "Comedia",
+        "icon": <FaMasksTheater />
+    },
+    {
+        "id": 80,
+        "name": "Crimen",
+        "icon": <FaDumpsterFire/>
+    },
+    {
+        "id": 14,
+        "name": "Fantasía",
+        "icon": <PiMoonStarsFill/>
+    },
+    {
+        "id": 27,
+        "name": "Terror",
+        "icon": <TbGhost2Filled/>
+    },
+    {
+        "id": 10749,
+        "name": "Romance",
+        "icon": <TbHeartFilled/>
+    },
+    {
+        "id": 12,
+        "name": "Aventura",
+        "icon": <PiSwordFill />
+    },
+    {
+        "id": 16,
+        "name": "Animación",
+        "icon": <ImPacman/>
+    },
+  ]
+
+const genresGenerator = ()=>{
+    const genresList: JSX.Element[] = []
+    genres.forEach(genre =>{
+        genresList.push(
+            <Button key={genre.id} variant='genre'  size='genre' >
+                    {genre.icon}
+                    {genre.name} 
+                
+            </Button>
+        )
+    })
+    return genresList
+}
+
+const GenreCard = (props: Props) => {
+  return (
+    <div className='flex gap-2 overflow-hidden '>
+        
+        {...genresGenerator()}
+    </div>
+  )
+}
+
+export default GenreCard

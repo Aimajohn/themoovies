@@ -37,7 +37,7 @@ function Header({}: Props) {
             
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <NavLink to='/trending'>
+                    <NavLink to='/tendencias'>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             Tendencias
                         </NavigationMenuLink>
@@ -51,11 +51,9 @@ function Header({}: Props) {
                     </NavLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <NavLink to='https://github.com/Aimajohn'>
-                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                        <NavigationMenuLink href='https://github.com/Aimajohn' target='_blank' className={navigationMenuTriggerStyle()} >
                                 Github
                         </NavigationMenuLink>
-                    </NavLink>
                 </NavigationMenuItem>
             </NavigationMenuList>
         </NavigationMenu>

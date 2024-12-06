@@ -1,29 +1,38 @@
 import MovieCard from '@/components/MovieCard'
+import {ScrollArea, ScrollBar} from '@/components/ui/scroll-area'
+import {MovieT, redondear, scrollT} from '@/API_LOGIC'
+import { Scrollbar } from '@radix-ui/react-scroll-area'
+type Props = {
+  title: string, 
+  movieList: MovieT[] | null , 
+  scrollType?: scrollT, 
+  setMovieId: React.Dispatch<React.SetStateAction<number>>
+}
 
-import {MovieT, redondear} from '@/API_LOGIC'
-type Props = {title: string, movieList: MovieT[] | null }
 
-
-function SectionContainer({title, movieList}: Props) {
+function SectionContainer({title, movieList, scrollType, setMovieId}: Props) {
   const arrayMovies:JSX.Element[]  = []
 
   movieList?.forEach(movie =>{
     arrayMovies.push(
-      <MovieCard calificacion={movie.vote_average} idPelicula={movie.id} titulo={movie.title} imagenSrc={'https://image.tmdb.org/t/p/w342/'+movie.poster_path}></MovieCard>
+      <MovieCard setMovieId={setMovieId} calificacion={movie.vote_average} idPelicula={movie.id} titulo={movie.title} imagenSrc={'https://image.tmdb.org/t/p/w342/'+movie.poster_path}></MovieCard>
     )
   })
 
   return (
-    <div className='px-10 mb-8'>
+    <div className='mb-8'>
       <h3 className='text-slate-100 mb-6 text-2xl font-bold font-Poppins'>{title}</h3>
-      <div className='flex overflow-x-scroll gap-4 scroll-fix'>
+        <ScrollArea className='w-full'>
+      <div className={'w-max flex gap-4 '+ scrollType}>
         {...arrayMovies}
+        </div>
+        <Scrollbar/>
+        </ScrollArea>
         {/* <MovieCard ></MovieCard>
         <MovieCard></MovieCard>
         <MovieCard></MovieCard>
         <MovieCard></MovieCard>
         <MovieCard></MovieCard> */}
-      </div>
     </div>
   )
 }

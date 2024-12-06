@@ -33,8 +33,8 @@ function Hero({movieData }: Props) {
                     informacion que necesitas para decidir verla</p>
                 </div>
                 <Button className='my-10 bg-green-700 text-lg py-6 px-5'>
-                    <NavLink to='/similares'>
-                        Ver Similares
+                    <NavLink to={"/movie/"+movieData?.id}>
+                        Ver Ahora
                     </NavLink>
                 </Button>
             </div>
