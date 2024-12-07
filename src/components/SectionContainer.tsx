@@ -14,12 +14,9 @@ type Props = {
 
 export function MovieSkeleton() {
   return (
-    <div>
-     { <div className='flex flex-col'>
+    <div className='mb-4 mr-4 inline-block'>
         <Skeleton className='w-52 h-72'/>
-        <Skeleton className='w-20 h-6'/>
-      </div>}
-
+        <Skeleton className='w-28 h-5 mt-2'/>
       </div>
   )
 }
@@ -33,12 +30,17 @@ function SectionContainer({title, movieList, scrollType, setMovieId, isLoading}:
     )
   })
 
-
+    const skeletonList: JSX.Element[] = Array.from({length: 17})
+    skeletonList.fill(<MovieSkeleton/>, 0,16)
+    console.log(skeletonList)
   return (
     <div className='mb-8'>
-      <h3 className='text-slate-100 mb-6 text-2xl font-bold font-Poppins'>{title}</h3>
+    {isLoading && <Skeleton className='h-8 w-60 mb-6 rounded-lg'/>}
+
+      <h3 className={`text-slate-100 mb-6 text-2xl font-bold font-Poppins ${isLoading? 'hidden': ''}`}>{title}</h3>
         <ScrollArea className='w-full pb-6'>
-          <div className={'w-full flex gap-4 '+ scrollType}>
+        {isLoading && [...skeletonList]}
+          <div className={`w-full gap-4 ${scrollType} ${isLoading? 'hidden': 'flex '}`}>
             {...arrayMovies}
           </div>
           <ScrollBar orientation="horizontal" />

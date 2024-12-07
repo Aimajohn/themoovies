@@ -88,8 +88,11 @@ function MovieDetail() {
 
     <div className='relative min-h-svh text-slate-100 pb-20'>
         <Header movieData={null}></Header>
-        <div className='top-0 left-0 absolute z-[-1] h-[40svh] overflow-hidden  before:w-full before:absolute before:bottom-0 before:left-0 before:h-1/2 before:from-transparent before:bg-gradient-to-b before:to-primary'>
-          <HeroBackground heroImg={'https://image.tmdb.org/t/p/original/'+ movie?.backdrop_path || heroImg}></HeroBackground>
+        <div className='top-0 left-0 absolute z-[-1] w-full h-[40svh] overflow-hidden  before:w-full before:absolute before:bottom-0 before:left-0 before:h-1/2 before:from-transparent before:bg-gradient-to-b before:to-primary'>
+        
+        {isLoading && <Skeleton className='w-full h-full '/>}
+        
+          <HeroBackground ClassName={`${isLoading? 'hidden': ''}`} heroImg={'https://image.tmdb.org/t/p/original/'+ movie?.backdrop_path || heroImg}></HeroBackground>
         </div>
         <div className='pt-64 relative ml-24 mr-8'>
           <div className='flex gap-10 pt-8 '>
@@ -113,8 +116,8 @@ function MovieDetail() {
                         trailColor: '#060606'
                       })} />
                   <div className=' w-2/3 '>
-                  {isLoading && <Skeleton className='w-24 h-3 mb-2'/>}
-                  {isLoading && <Skeleton className='w-16 h-3'/>}
+                  {isLoading && <Skeleton className='w-24 h-3 mt-2'/>}
+                  {isLoading && <Skeleton className='w-24 h-3 mt-3'/>}
                   <p className={` ${isLoading? 'hidden': 'block'}`}><b>{movie?.vote_count} </b>ratings</p>
                   <p className={` ${isLoading? 'hidden': 'block'}`}><b>{movie?.popularity} </b>views</p>
                   </div>
@@ -133,15 +136,17 @@ function MovieDetail() {
               {isLoading && <Skeleton className='w-36 h-5 my-5 rounded-full'/>}
                 <h4 className={`text-slate-200 leading-loose font-semibold ${isLoading? 'hidden': 'block'}`}>
                   Movie ({movie?.release_date})</h4>
-                <div className='my-4 flex gap-3 items-center'>
+                <div className='my-4 pt-1 flex gap-3 items-center'>
                   {isLoading && <Skeleton className='w-[168.72px]  h-12 rounded-lg'/>}
                   <Button className={`font-semibold font-Urbanist text-lg px-5 py-6 ${isLoading? 'hidden': ''}`} variant='secondary'>
                     <NavLink className={'flex items-center gap-2'} to={ movie? movie.homepage : 'https://www.youtube.com/'}>
                       Watch trailer <FaPlay />
                     </NavLink>
                     </Button>
-                  <Button size='iconMain' variant='ghost'><FaBookmark/></Button>
-                  <Button size='iconMain' variant='ghost'><FaShareAlt/></Button>
+                  {isLoading && <> <Skeleton className='h-12 w-12 rounded-full'/>  <Skeleton className='h-12 w-12 rounded-full'/></>}
+                  
+                  <Button className={`${isLoading? 'hidden' : ''}`} size='iconMain' variant='ghost'><FaBookmark/></Button>
+                  <Button className={`${isLoading? 'hidden' : ''}`} size='iconMain' variant='ghost'><FaShareAlt/></Button>
                 </div>
                 {isLoading && <Skeleton className='w-4/5 h-32 mb-2'/>}
                 <p className={`w-4/5 text-slate-200 my-8 ${isLoading? 'hidden': 'block'}`}>
