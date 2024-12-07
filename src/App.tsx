@@ -48,7 +48,7 @@ function  App() {
   // }
   return (
     <div className='relative' >
-      <Header ></Header>
+      <Header movieData={hero}></Header>
       <div className='w-full '>
         <Hero movieData={hero}></Hero>
       </div>

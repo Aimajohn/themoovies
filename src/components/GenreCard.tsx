@@ -1,23 +1,17 @@
 import React from 'react'
-import { Button, buttonVariants } from './ui/button'
+import { Button } from './ui/button'
 import {NavLink} from 'react-router'
-import { TbSwords, TbHeartFilled, TbGhost2Filled  } from "react-icons/tb";
+import { TbHeartFilled, TbGhost2Filled  } from "react-icons/tb";
 import { FaMasksTheater, FaDumpsterFire } from "react-icons/fa6";
 import { PiMoonStarsFill, PiSwordFill  } from "react-icons/pi";
 import { RiSwordFill } from "react-icons/ri";
 import { ImPacman } from "react-icons/im";
+import { genreIdT } from '@/API_LOGIC';
 
 
-type Props = {}
-// Acción
-// Romance
-// Terror
-// Animación
-// Comedia
-// Aventura
-// Crimen
-// Fantasía
-
+type Props = {
+    setGenreId: React.Dispatch<React.SetStateAction<genreIdT>>
+}
 
 const genres = [
     {
@@ -25,6 +19,7 @@ const genres = [
       "name": "Acción",
       "icon": <RiSwordFill/>
     },
+    
     {
         "id": 35,
         "name": "Comedia",
@@ -59,30 +54,35 @@ const genres = [
         "id": 16,
         "name": "Animación",
         "icon": <ImPacman/>
-    },
+    }
   ]
 
-const genresGenerator = ()=>{
-    const genresList: JSX.Element[] = []
-    genres.forEach(genre =>{
-        genresList.push(
-            <Button key={genre.id} variant='genre'  size='genre' >
-                    {genre.icon}
-                    {genre.name} 
-                
-            </Button>
-        )
-    })
-    return genresList
-}
 
-const GenreCard = (props: Props) => {
-  return (
+
+const GenreCard = ({setGenreId}: Props) => {
+
+    const genresGenerator = ()=>{
+        const genresList: JSX.Element[] = []
+        genres.forEach(genre =>{
+            genresList.push(
+                <Button asChild key={genre.id} variant='genre' onClick={()=>setGenreId(genre.id as unknown as genreIdT)}  size='genre' >
+                    <NavLink to={`/tendencias/genero/${genre.id}`}>
+                        {genre.icon}
+                        {genre.name} 
+                    </NavLink>
+                    
+                </Button>
+            )
+        })
+        return genresList
+    }
+
+    return (
     <div className='flex gap-2 overflow-hidden '>
         
         {...genresGenerator()}
     </div>
-  )
+    )
 }
 
 export default GenreCard

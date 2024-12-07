@@ -1,11 +1,10 @@
-import movieImg from '@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg'
+// import movieImg from '@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg'
 import {Badge, badgeVariants} from '@/components/ui/badge'
-import { Button, buttonVariants,  } from './ui/button'
+import { Button, } from './ui/button'
 import {NavLink} from 'react-router'
 import { useNavigate } from "react-router";
-import {useState} from 'react'
 import {redondear} from '@/API_LOGIC'
-import { truncate } from 'fs';
+
 type Props = {
   calificacion: number,
   imagenSrc: string,
@@ -16,18 +15,21 @@ type Props = {
 
 function MovieCard({calificacion, imagenSrc, titulo, idPelicula, setMovieId}: Props) {
   const navigate = useNavigate()
-  const [loading, setLoading] = useState(true)
   const changeUrl = ()=>{
     setMovieId(idPelicula)
     navigate("/movie/"+idPelicula)
   }
+
+  
   return (
     <div className='min-w-52 w-52 overflow-hidden'>
-      <div className='group relative flex rounded-md h-72 overflow-hidden' >
+      <div className='group relative flex rounded-md h-72 overflow-hidden hover:cursor-pointer' >
         <Button onClick={changeUrl} asChild className=' w-52 h-full p-0 group-hover:cursor-pointer'>
-          <div className='rounded-xl overflow-hidden w-52'>
-                <img className='group-hover:scale-105 transition-transform duration-300' src={imagenSrc} alt="movieImg" />
+          
+          <div className={`rounded-xl overflow-hidden w-52 `}>
+                <img className='group-hover:scale-105 transition-transform duration-300'  src={imagenSrc} alt="movieImg" />
           </div>
+        
         </Button>
           <Button className='absolute top-0 right-0 m-2' size='icon' variant='love'>❤️</Button>
           <Badge className={badgeVariants({variant: 'secondary'}) + ' absolute bottom-0 right-0 m-2'} variant='imbd'>IMDB {redondear(calificacion)}</Badge>

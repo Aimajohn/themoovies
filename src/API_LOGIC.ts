@@ -1,5 +1,5 @@
 
-import axios, { AxiosResponse, AxiosRequestConfig, RawAxiosRequestHeaders, Axios } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 // Header functions
 
@@ -123,6 +123,28 @@ export type CastMemberT = {
 
 export type listaT = 'recommendations' | 'popular'
 
+export type genreIdT = 
+"28" |
+"12" |
+"16" |
+"35" |
+"80" |
+"99" |
+"18" |
+"10751" |
+"14" |
+"36" |
+"27" |
+"10402" |
+"9648" |
+"10749" |
+"878" |
+"10770" |
+"53" |
+"10752" |
+"37" |
+"0"
+
 // Helper functions
 
 export function redondear(numero: number){
@@ -152,13 +174,13 @@ function whichSize(width: number){
 
 //Functional code
 
-export const getMovie = async (lista: listaT = 'popular', id?: number, genero?: number) => {
+export const getMovie = async (lista: listaT = 'popular', id?: number, genero?: string) => {
     try{
-
         let url ='/movie/'+ (id? `${id}/${lista}`: lista)
-        if (genero){
+        if (genero && genero != "0"){
             url = `/discover/movie?include_adult=false&include_video=false&language=es-EC&page=1&sort_by=popularity.desc&with_genres=${genero}`
         }
+        console.log(url)
         const response: AxiosResponse = await api.get(url)
             const data: MovieT[] = response.data.results
             return data

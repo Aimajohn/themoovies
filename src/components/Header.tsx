@@ -5,29 +5,25 @@ import {
     NavigationMenu,
     NavigationMenuList,
     NavigationMenuItem,
-    NavigationMenuContent,
-    NavigationMenuTrigger,
     NavigationMenuLink,
-    NavigationMenuIndicator,
-    NavigationMenuViewport,
   }
    from "@/components/ui/navigation-menu";
-import {Link} from 'react-router'
-import {Input} from '@/components/ui/input'
-type Props = {}
+import { MovieDetailedT } from '@/API_LOGIC';
 
-function Header({}: Props) {
+type Props = {
+    movieData : MovieDetailedT | null
+}
+
+function Header({movieData}: Props) {
+    const myUrl = window.location.href
   return (
-    <header className='w-full absolute top-0 right-0 flex justify-between px-4 py-4 from-[#04021a] bg-gradient-to-b to-to-[#000000]'>
+    <header className='w-full absolute top-0 right-0 flex justify-between px-4 py-4 from-primary bg-gradient-to-b to-to-[#000000]'>
        <NavigationMenu>
             <NavigationMenuList>
-               
                 <NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavLink to='/' id="pageLogo" className="w-56 lg:w-40 lg:!block lg:ml-3">
-                            <img  className="object-fit" src={Logo} alt="The Moovies Logo"/>
-                        </NavLink>
-                    </NavigationMenuItem>
+                    <NavLink to='/' id="pageLogo" className="w-56 lg:w-40 lg:!block lg:ml-3">
+                        <img  className="object-fit" src={Logo} alt="The Moovies Logo"/>
+                    </NavLink>
                 </NavigationMenuItem>
 
             </NavigationMenuList>
@@ -36,20 +32,19 @@ function Header({}: Props) {
         <NavigationMenu className="w-full flex justify-between ">
             
             <NavigationMenuList>
+                {(!myUrl.includes('tendencias') && !myUrl.includes('movie')) && <>
                 <NavigationMenuItem>
-                    <NavLink to='/tendencias'>
-                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                        <NavigationMenuLink href='/tendencias'  className={navigationMenuTriggerStyle()}>
                             Tendencias
                         </NavigationMenuLink>
-                    </NavLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <NavLink to='/simialars'>
-                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                        <NavigationMenuLink href={movieData?`/movie/${movieData.id}`:'/'} className={navigationMenuTriggerStyle()}>
                             Peliculas Similares
                         </NavigationMenuLink>
-                    </NavLink>
                 </NavigationMenuItem>
+                </>
+                }
                 <NavigationMenuItem>
                         <NavigationMenuLink href='https://github.com/Aimajohn' target='_blank' className={navigationMenuTriggerStyle()} >
                                 Github

@@ -2,10 +2,10 @@ import {useState, useEffect} from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import HeroBackground from './components/ui/hero-background'
-import {Button, buttonVariants} from '@/components/ui/button'
+import {Button} from '@/components/ui/button'
 import {Badge} from '@/components/ui/badge'
 import CrewCard from '@/components/CrewCard'
-import movieFace from '@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg'
+// import movieFace from '@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg'
 import heroImg from '@/imgs/m2teNSCH7sxkuXHossRJXhxPKeT.jpg'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -13,14 +13,12 @@ import { FaShareAlt, FaBookmark, FaPlay } from "react-icons/fa";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
-  TableHeader,
   TableRow,
 } from "@/components/ui/table"
 import {NavLink, useParams} from 'react-router'
-import {CastMemberT, getCredits, getHero, getMovie, MovieCreditsResponseT, MovieDetailedT, MovieT, redondear} from '@/API_LOGIC'
+import {getCredits, getHero, getMovie, MovieCreditsResponseT, MovieDetailedT, MovieT} from '@/API_LOGIC'
 import {redondearF} from '@/API_LOGIC'
 import SectionContainer from './components/SectionContainer'
 
@@ -30,10 +28,10 @@ function MovieDetail() {
   const [movie, setMovie] = useState<MovieDetailedT|null>(null)
   const [recommended, setRecommended] = useState<MovieT[]|null>(null)
   const [crewCast, setCrewCast] = useState<MovieCreditsResponseT|null>(null)
-  const [loading, setLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   useEffect(() => {
-    setLoading(true)
+    setIsLoading(true)
 
     const getDetails = async ()  => {
       try{
@@ -42,7 +40,7 @@ function MovieDetail() {
             
           const [pelicula, lista, actores] = await Promise.all([
             getHero(idPelicula, 780), 
-            getMovie('recommendations', Number(id)),
+            getMovie('recommendations', Number(id), "0"),
             getCredits(Number(id))
           ]) 
 
@@ -56,7 +54,7 @@ function MovieDetail() {
         }catch(error){
           console.error('ijole pa')
         }finally{
-          setLoading(false)
+          setIsLoading(false)
         }
     }
     getDetails()
@@ -77,7 +75,7 @@ function MovieDetail() {
       const returnValue:JSX.Element[]  = []
       movieCast.cast.slice(0,5).forEach(member =>{
         returnValue.push(
-          <CrewCard miembro={member}></CrewCard>
+          <CrewCard key={member.cast_id} miembro={member}></CrewCard>
         )
       })
       return returnValue
@@ -88,7 +86,7 @@ function MovieDetail() {
   return (
 
     <div className='relative min-h-svh text-slate-100 pb-20'>
-        <Header ></Header>
+        <Header movieData={null}></Header>
         <div className='top-0 left-0 absolute z-[-1] h-[40svh] overflow-hidden  before:w-full before:absolute before:bottom-0 before:left-0 before:h-1/2 before:from-transparent before:bg-gradient-to-b before:to-primary'>
           <HeroBackground className="" heroImg={'https://image.tmdb.org/t/p/original/'+ movie?.backdrop_path || heroImg}></HeroBackground>
         </div>

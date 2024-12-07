@@ -14,7 +14,7 @@ const buttonVariants = cva(
         destructive:
           "bg-red-500 text-slate-50 shadow-sm hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90",
         outline:
-          "border border-slate-200 bg-white shadow-sm hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
+          "border border-slate-200 bg-white shadow-sm hover:bg-slate-300 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
           secondary:
           "bg-secondary text-slate-900 shadow-sm hover:bg-yellow-500/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80 ",
         ghost: 
@@ -33,7 +33,7 @@ const buttonVariants = cva(
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9 rounded-full",
         iconMain: "h-12 w-12 rounded-full",
-        genre: "px-12 py-8 rounded-lg text-3xl"
+        genre: "px-12 py-6 rounded-lg text-3xl"
       },
     },
     defaultVariants: {
