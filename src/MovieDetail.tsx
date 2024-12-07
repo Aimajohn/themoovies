@@ -21,6 +21,7 @@ import {NavLink, useParams} from 'react-router'
 import {getCredits, getHero, getMovie, MovieCreditsResponseT, MovieDetailedT, MovieT} from '@/API_LOGIC'
 import {redondearF} from '@/API_LOGIC'
 import SectionContainer from './components/SectionContainer'
+import {Skeleton} from '@/components/ui/skeleton'
 
 function MovieDetail() {
   const {id} = useParams<{ id: string }>()
@@ -28,7 +29,7 @@ function MovieDetail() {
   const [movie, setMovie] = useState<MovieDetailedT|null>(null)
   const [recommended, setRecommended] = useState<MovieT[]|null>(null)
   const [crewCast, setCrewCast] = useState<MovieCreditsResponseT|null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     setIsLoading(true)
@@ -75,7 +76,7 @@ function MovieDetail() {
       const returnValue:JSX.Element[]  = []
       movieCast.cast.slice(0,5).forEach(member =>{
         returnValue.push(
-          <CrewCard key={member.cast_id} miembro={member}></CrewCard>
+          <CrewCard key={member.cast_id} isLoading={isLoading} miembro={member}></CrewCard>
         )
       })
       return returnValue
@@ -88,7 +89,7 @@ function MovieDetail() {
     <div className='relative min-h-svh text-slate-100 pb-20'>
         <Header movieData={null}></Header>
         <div className='top-0 left-0 absolute z-[-1] h-[40svh] overflow-hidden  before:w-full before:absolute before:bottom-0 before:left-0 before:h-1/2 before:from-transparent before:bg-gradient-to-b before:to-primary'>
-          <HeroBackground className="" heroImg={'https://image.tmdb.org/t/p/original/'+ movie?.backdrop_path || heroImg}></HeroBackground>
+          <HeroBackground heroImg={'https://image.tmdb.org/t/p/original/'+ movie?.backdrop_path || heroImg}></HeroBackground>
         </div>
         <div className='pt-64 relative ml-24 mr-8'>
           <div className='flex gap-10 pt-8 '>
@@ -96,19 +97,26 @@ function MovieDetail() {
             className='w-1/5'
             >
               <div className=' flex flex-col '>
-                <div className='rounded-xl w-4/5 overflow-hidden shadow-lg'>
+                {isLoading && <Skeleton className='w-[262.55px] h-[383.33px] rounded-xl shadow-xl ' />}
+
+                <div className={`rounded-xl w-4/5 overflow-hidden shadow-lg ${isLoading? 'hidden': 'block'}`}>
                   <img src={"https://image.tmdb.org/t/p/w342"+movie?.poster_path} alt="caratula" />
                 </div>
                 <div className='flex items-center mt-4 h-20 ' >
-                    <CircularProgressbar className='w-1/3 h-16 font-bold ' strokeWidth={7.5} maxValue={10} value={redondearF(movie?.vote_average)} text={`${redondearF(movie?.vote_average)}`}  styles={buildStyles({
+                  
+                {isLoading && <Skeleton className='w-16 h-16 mt-4 ml-5 mr-5 rounded-full'/>}
+                
+                    <CircularProgressbar className={`w-1/3 h-16 font-bold ${isLoading? 'hidden': 'block'}`} strokeWidth={7.5} maxValue={10} value={redondearF(movie?.vote_average)} text={`${redondearF(movie?.vote_average)}`}  styles={buildStyles({
                         pathColor: `rgb(234, 179, 8)`,
                         textColor: '#f3f7f2',
                         textSize: '2rem',
                         trailColor: '#060606'
                       })} />
                   <div className=' w-2/3 '>
-                  <p><b>{movie?.vote_count} </b>ratings</p>
-                  <p><b>{movie?.popularity} </b>views</p>
+                  {isLoading && <Skeleton className='w-24 h-3 mb-2'/>}
+                  {isLoading && <Skeleton className='w-16 h-3'/>}
+                  <p className={` ${isLoading? 'hidden': 'block'}`}><b>{movie?.vote_count} </b>ratings</p>
+                  <p className={` ${isLoading? 'hidden': 'block'}`}><b>{movie?.popularity} </b>views</p>
                   </div>
                 </div>
               </div>
@@ -116,21 +124,27 @@ function MovieDetail() {
             </section>
             <section className='w-3/5'>
               <article>
-                <h1 className='text-3xl font-Poppins font-bold tracking-wide'>
+              {isLoading && <Skeleton className='w-56 h-7 mb-2 rounded-full'/>}
+                <h1 className={`text-3xl font-Poppins font-bold tracking-wide ${isLoading? 'hidden': 'block'}`}>
                   {movie?.title}
                 </h1>
-                <p className='text-sm font-light leading-loose'>Original title: {movie?.original_title}</p>
-                <h4 className='text-slate-200 leading-loose font-semibold'>Movie ({movie?.release_date})</h4>
+              {isLoading && <Skeleton className='w-24 h-3 my-3 rounded-full'/>}
+                <p className={`text-sm font-light leading-loose ${isLoading? 'hidden': 'block'}`}>Original title: {movie?.original_title}</p>
+              {isLoading && <Skeleton className='w-36 h-5 my-5 rounded-full'/>}
+                <h4 className={`text-slate-200 leading-loose font-semibold ${isLoading? 'hidden': 'block'}`}>
+                  Movie ({movie?.release_date})</h4>
                 <div className='my-4 flex gap-3 items-center'>
-                  <Button className=' font-semibold font-Urbanist text-lg px-5 py-6' variant='secondary'>
-                    <NavLink className='flex items-center gap-2' to={ movie? movie.homepage : 'https://www.youtube.com/'}>
+                  {isLoading && <Skeleton className='w-[168.72px]  h-12 rounded-lg'/>}
+                  <Button className={`font-semibold font-Urbanist text-lg px-5 py-6 ${isLoading? 'hidden': ''}`} variant='secondary'>
+                    <NavLink className={'flex items-center gap-2'} to={ movie? movie.homepage : 'https://www.youtube.com/'}>
                       Watch trailer <FaPlay />
                     </NavLink>
                     </Button>
                   <Button size='iconMain' variant='ghost'><FaBookmark/></Button>
                   <Button size='iconMain' variant='ghost'><FaShareAlt/></Button>
                 </div>
-                <p className='w-4/5 text-slate-200 my-8'>
+                {isLoading && <Skeleton className='w-4/5 h-32 mb-2'/>}
+                <p className={`w-4/5 text-slate-200 my-8 ${isLoading? 'hidden': 'block'}`}>
                   {movie
                     ? movie.overview ? movie.overview : 'No description' 
                     : 'No description'
@@ -140,12 +154,14 @@ function MovieDetail() {
               </article>
 
               <article>
-                <h2 className='text-2xl font-Poppins font-semibold tracking-wide'>Details</h2>
-                <Table>
+                {isLoading && <Skeleton className='w-28 h-7 my-5 rounded-full '/>}
+                <h2 className={`text-2xl font-Poppins font-semibold tracking-wide ${isLoading? 'hidden': 'block'}`}>Details</h2>
+                {isLoading && <Skeleton className='w-2/5 h-32 mb-2'/>}
+                <Table className={`${isLoading? 'hidden': ''}`}>
                 <TableBody>
                   <TableRow>
                     <TableHead className="text-left">Genres</TableHead>
-                    <TableCell className="font-medium flex gap-1">
+                    <TableCell className={`font-medium flex gap-1 `}>
                       {
                         (!movie)? <p></p> : [...genreGenerator(movie.genres)]
                       }
@@ -153,11 +169,11 @@ function MovieDetail() {
                   </TableRow>
                   <TableRow>
                     <TableHead className="text-left">Country of Origin</TableHead>
-                    <TableCell className="font-medium">{movie?.origin_country}</TableCell>
+                    <TableCell className={`font-medium `}>{movie?.origin_country}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableHead className="text-left">Runtime</TableHead>
-                    <TableCell className="font-medium">{movie?.runtime} min</TableCell>
+                    <TableCell className={`font-medium `}>{movie?.runtime} min</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -166,16 +182,17 @@ function MovieDetail() {
 
             </section>
             <section className='w-1/5'>
-              <h3 className='font-bold text-xl tracking-wide font-Poppins mb-4'>Cast & Crew</h3>
+              {isLoading && <Skeleton className='w-28 h-5 mb-5 rounded-full '/>}
+              <h3 className={`font-bold text-xl tracking-wide font-Poppins mb-4 ${isLoading? 'hidden': 'block'}`}>Cast & Crew</h3>
               <div>
                 {crewCast? castGenerator(crewCast):'None'}
               </div>
-              <Button>Show all</Button>
+              {/* <Button>Show all</Button> */}
             </section>
           </div>
         </div>
         <div className='m-14 ml-24 '>
-          <SectionContainer setMovieId={setMovieId} movieList={recommended} title='Recomendaciones' scrollType='flex-wrap'></SectionContainer>
+          <SectionContainer isLoading={isLoading} setMovieId={setMovieId} movieList={recommended} title='Recomendaciones' scrollType='flex-wrap'></SectionContainer>
         </div>
 
         <Footer></Footer>

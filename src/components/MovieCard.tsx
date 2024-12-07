@@ -4,16 +4,18 @@ import { Button, } from './ui/button'
 import {NavLink} from 'react-router'
 import { useNavigate } from "react-router";
 import {redondear} from '@/API_LOGIC'
+import {Skeleton} from '@/components/ui/skeleton'
 
 type Props = {
   calificacion: number,
   imagenSrc: string,
   titulo: string,
   idPelicula: number,
+  isLoading: boolean,
   setMovieId: React.Dispatch<React.SetStateAction<number>>
 }
 
-function MovieCard({calificacion, imagenSrc, titulo, idPelicula, setMovieId}: Props) {
+function MovieCard({calificacion, imagenSrc, titulo, idPelicula, isLoading, setMovieId}: Props) {
   const navigate = useNavigate()
   const changeUrl = ()=>{
     setMovieId(idPelicula)
@@ -23,7 +25,8 @@ function MovieCard({calificacion, imagenSrc, titulo, idPelicula, setMovieId}: Pr
   
   return (
     <div className='min-w-52 w-52 overflow-hidden'>
-      <div className='group relative flex rounded-md h-72 overflow-hidden hover:cursor-pointer' >
+      {isLoading && <Skeleton className='w-52 h-72 mb-2'/>}
+      <div className={`group relative flex rounded-md h-72 overflow-hidden hover:cursor-pointer ${isLoading? 'hidden': 'block'}`} >
         <Button onClick={changeUrl} asChild className=' w-52 h-full p-0 group-hover:cursor-pointer'>
           
           <div className={`rounded-xl overflow-hidden w-52 `}>
@@ -34,7 +37,8 @@ function MovieCard({calificacion, imagenSrc, titulo, idPelicula, setMovieId}: Pr
           <Button className='absolute top-0 right-0 m-2' size='icon' variant='love'>❤️</Button>
           <Badge className={badgeVariants({variant: 'secondary'}) + ' absolute bottom-0 right-0 m-2'} variant='imbd'>IMDB {redondear(calificacion)}</Badge>
     </div>
-    <Button className='text-slate-200 w-11/12 flex justify-start pl-0' variant="link">{
+    {isLoading && <Skeleton className='w-36 h-4 rounded-full'/>}
+    <Button className={`text-slate-200 w-11/12 flex text-left justify-start pl-0 ${isLoading? 'hidden': 'block'}`} variant="link">{
       <NavLink className='truncate text-ellipsis' to={"/movie/"+idPelicula}>
         {titulo}
       </NavLink>

@@ -6,7 +6,8 @@ type Props = {
   title: string, 
   movieList: MovieT[] | null , 
   scrollType?: scrollT, 
-  setMovieId: React.Dispatch<React.SetStateAction<number>>
+  setMovieId: React.Dispatch<React.SetStateAction<number>>,
+  isLoading: boolean
 }
 
 
@@ -23,12 +24,12 @@ export function MovieSkeleton() {
   )
 }
 
-function SectionContainer({title, movieList, scrollType, setMovieId}: Props) {
+function SectionContainer({title, movieList, scrollType, setMovieId, isLoading}: Props) {
   const arrayMovies:JSX.Element[]  = []
 
   movieList?.forEach(movie =>{
     arrayMovies.push(
-      <MovieCard setMovieId={setMovieId} key={movie.id} calificacion={movie.vote_average} idPelicula={movie.id} titulo={movie.title} imagenSrc={'https://image.tmdb.org/t/p/w342/'+movie.poster_path}></MovieCard>
+      <MovieCard isLoading={isLoading} setMovieId={setMovieId} key={movie.id} calificacion={movie.vote_average} idPelicula={movie.id} titulo={movie.title} imagenSrc={'https://image.tmdb.org/t/p/w342/'+movie.poster_path}></MovieCard>
     )
   })
 
