@@ -5,6 +5,7 @@ import HeroBackground from './components/ui/hero-background'
 import {Button} from '@/components/ui/button'
 import {Badge} from '@/components/ui/badge'
 import CrewCard from '@/components/CrewCard'
+import {useLocation} from 'react-router'
 // import movieFace from '@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg'
 import heroImg from '@/imgs/m2teNSCH7sxkuXHossRJXhxPKeT.jpg'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
@@ -23,6 +24,16 @@ import {redondearF} from '@/API_LOGIC'
 import SectionContainer from './components/SectionContainer'
 import {Skeleton} from '@/components/ui/skeleton'
 
+
+function useOnUrlChange(callback:() => void) {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Ejecuta la función de callback al cambiar la URL
+    callback();
+  }, [location]);
+}
+
 function MovieDetail() {
   const {id} = useParams<{ id: string }>()
   const [movieId, setMovieId] = useState<number>(Number(id))
@@ -30,6 +41,10 @@ function MovieDetail() {
   const [recommended, setRecommended] = useState<MovieT[]|null>(null)
   const [crewCast, setCrewCast] = useState<MovieCreditsResponseT|null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
+
+  useOnUrlChange(() =>{
+    setMovieId(Number(id))
+  })
 
   useEffect(() => {
     setIsLoading(true)
