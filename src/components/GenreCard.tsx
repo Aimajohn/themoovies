@@ -60,12 +60,15 @@ const genres = [
 
 
 const GenreCard = ({setGenreId}: Props) => {
-
+    const genreButton = (genre: {id: number, name: string, icon: JSX.Element})=>{
+        window.scroll(0,0)
+        setGenreId(genre.id as unknown as genreIdT)
+    }
     const genresGenerator = ()=>{
         const genresList: JSX.Element[] = []
         genres.forEach(genre =>{
             genresList.push(
-                <Button asChild key={genre.id} variant='genre' onClick={()=>setGenreId(genre.id as unknown as genreIdT)}  size='genre' >
+                <Button asChild key={genre.id} variant='genre' onClick={()=>genreButton(genre)}  size='genre' >
                     <NavLink to={`/tendencias/genero/${genre.id}`}>
                         {genre.icon}
                         {genre.name} 

@@ -18,6 +18,7 @@ type Props = {
 function MovieCard({calificacion, imagenSrc, titulo, idPelicula, isLoading, setMovieId}: Props) {
   const navigate = useNavigate()
   const changeUrl = ()=>{
+    window.scroll(0,0)
     setMovieId(idPelicula)
     navigate("/movie/"+idPelicula)
   }
