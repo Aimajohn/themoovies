@@ -3,7 +3,6 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import HeroBackground from './components/ui/hero-background'
 import {Button} from '@/components/ui/button'
-import {Badge} from '@/components/ui/badge'
 import CrewCard from '@/components/CrewCard'
 import {useLocation} from 'react-router'
 // import movieFace from '@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg'
@@ -75,14 +74,21 @@ function MovieDetail() {
     }
     getDetails()
   }, [movieId])
-
-    const genreGenerator = (miLista: {id: number;name: string;}[] | undefined)=>{ 
+    type miLista= {id: number;name: string;}[]
+    const genreGenerator = (miLista:miLista | undefined)=>{ 
+      console.log(miLista)
       if (!miLista) return []
       const genresList: JSX.Element[] = []
       let keymaster = 0
-      for (const pelicula of miLista){
+      for (const genero of miLista){
         keymaster++
-        genresList.push(<Badge key={keymaster}>{pelicula.name}</Badge>)
+        genresList.push(
+        <Button key={keymaster} >
+          <NavLink to={'/tendencias/genero/'+genero.id}>
+          {genero.name}
+          </NavLink>
+          </Button>
+      )
       }
       return genresList
     }

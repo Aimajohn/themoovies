@@ -42,11 +42,11 @@ function SectionContainer({title, movieList, scrollType, setMovieId, isLoading}:
     skeletonList.fill(<MovieSkeleton/>, 0,16)
     console.log(skeletonList)
   return (
-    <div className='mb-8'>
+    <div className='mb-8 w-full'  ref={scrollContainerRef} onWheel={handleWheel}>
     {isLoading && <Skeleton className='h-8 w-60 mb-6 rounded-lg'/>}
 
       <h3 className={`text-slate-100 mb-6 text-2xl font-bold font-Poppins ${isLoading? 'hidden': ''}`}>{title}</h3>
-        <ScrollArea  ref={scrollContainerRef} onWheel={handleWheel}>
+        <ScrollArea className='w-full'>
         {isLoading && [...skeletonList]}
           <div className={`w-full gap-4 ${scrollType} ${isLoading? 'hidden': 'flex '}`}>
             {...arrayMovies}
