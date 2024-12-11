@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 @layer components {
-    .scroll-fix::-webkit-scrollbar{
-        display: none;
-    }
-    .scroll-fix{
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;
-    }
+  .scroll-fix::-webkit-scrollbar {
+    display: none;
+  }
+  .scroll-fix {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+  }
 }
 
-body{
-   @apply bg-primary;
+body {
+  @apply bg-primary;
 }
