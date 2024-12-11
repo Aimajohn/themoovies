@@ -208,6 +208,7 @@ export const getCredits = async (id: number) => {
 
 export async function getHero(id:number, width:number){
     const posterSize = whichSize(width)
+    console.log(posterSize)
     const response : AxiosResponse = await api(`/movie/${id}`)
     const data : MovieDetailedT = response.data 
     return (data)

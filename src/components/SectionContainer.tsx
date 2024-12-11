@@ -1,4 +1,5 @@
 import MovieCard from '@/components/MovieCard'
+import {useRef} from 'react'
 import {ScrollArea, ScrollBar} from '@/components/ui/scroll-area'
 import {MovieT, scrollT} from '@/API_LOGIC'
 import { Skeleton } from './ui/skeleton'
@@ -23,7 +24,14 @@ export function MovieSkeleton() {
 
 function SectionContainer({title, movieList, scrollType, setMovieId, isLoading}: Props) {
   const arrayMovies:JSX.Element[]  = []
-
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const handleWheel = (event: React.WheelEvent) => {
+    if (scrollContainerRef.current && event.deltaY !== 0) {
+      event.preventDefault();
+      // Desplazar horizontalmente en lugar de verticalmente
+      scrollContainerRef.current.scrollLeft += event.deltaY;
+    }
+  };
   movieList?.forEach(movie =>{
     arrayMovies.push(
       <MovieCard isLoading={isLoading} setMovieId={setMovieId} key={movie.id} calificacion={movie.vote_average} idPelicula={movie.id} titulo={movie.title} imagenSrc={'https://image.tmdb.org/t/p/w342/'+movie.poster_path}></MovieCard>
@@ -38,7 +46,7 @@ function SectionContainer({title, movieList, scrollType, setMovieId, isLoading}:
     {isLoading && <Skeleton className='h-8 w-60 mb-6 rounded-lg'/>}
 
       <h3 className={`text-slate-100 mb-6 text-2xl font-bold font-Poppins ${isLoading? 'hidden': ''}`}>{title}</h3>
-        <ScrollArea className='w-full pb-6'>
+        <ScrollArea  ref={scrollContainerRef} onWheel={handleWheel}>
         {isLoading && [...skeletonList]}
           <div className={`w-full gap-4 ${scrollType} ${isLoading? 'hidden': 'flex '}`}>
             {...arrayMovies}

@@ -76,7 +76,7 @@ const TendenciasApp = () => {
           <div className='my-8'>
             <GenreCard setGenreId={setGenreId}/>
           </div>
-          <SectionContainer scrollType='flex-wrap'  movieList={movieList} setMovieId={setMovieId} title={`Tendencias ${genreId != "0" ? 'en '+ genres[genreId]: ""}`} ></SectionContainer>
+          <SectionContainer isLoading={isLoading} scrollType='flex-wrap'  movieList={movieList} setMovieId={setMovieId} title={`Tendencias ${genreId != "0" ? 'en '+ genres[genreId]: ""}`} ></SectionContainer>
         </div>
         <Footer/>
 

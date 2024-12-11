@@ -13,7 +13,9 @@ function  App() {
   const [movieId, setMovieId] = useState<number>(Number(0))
   const [hero, setHero] = useState<MovieDetailedT | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [error, setError] = useState<string|null>(null)
+  // const [error, setError] = useState<string|null>(null)
+  console.log(movieId)
+ 
 
   useEffect(()=>{
     const fetchMovies = async ()=>{

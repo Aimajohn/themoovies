@@ -1,4 +1,3 @@
-import React from 'react'
 import Logo from '@/imgs/icon-just-books.png'
 import MooviesLogo from '@/imgs/logo.png'
 

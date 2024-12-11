@@ -19,7 +19,7 @@ function Hero({movieData }: Props) {
   return (
     <div className='w-full text-slate-100 font-Montserrat overflow-hidden relative pt-20 pb-4' >
         <div className='top-0 left-0 absolute z-[-1] h-[52svh] overflow-hidden   before:w-full before:absolute before:bottom-0 before:left-0 before:h-1/2  before:from-transparent before:bg-gradient-to-b before:to-primary'>
-          <HeroBackground heroImg={imagenSrc}></HeroBackground>
+          <HeroBackground ClassName='' heroImg={imagenSrc}></HeroBackground>
         </div>
             <div className='mx-10 pt-12 xl:w-2/5 lg:w-3/5'>
             <div className='flex items-center gap-4'>
