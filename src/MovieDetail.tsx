@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
-import HeroBackground from "./components/ui/hero-background"
-import { Button } from "@/components/ui/button"
-import CrewCard from "@/components/CrewCard"
+import Header from "@components/Header"
+import Footer from "@components/Footer"
+import HeroBackground from "@ui/hero-background"
+import { Button } from "@ui/button"
+import CrewCard from "@components/CrewCard"
 import { useLocation } from "react-router"
 // import movieFace from '@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg'
 import heroImg from "@/imgs/m2teNSCH7sxkuXHossRJXhxPKeT.jpg"
@@ -46,6 +46,7 @@ function MovieDetail() {
   const [recommended, setRecommended] = useState<MovieT[] | null>(null)
   const [crewCast, setCrewCast] = useState<MovieCreditsResponseT | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isImgLoading, setIsImgLoading] = useState<boolean>(true)
 
   useOnUrlChange(() => {
     setMovieId(Number(id))
@@ -53,7 +54,7 @@ function MovieDetail() {
 
   useEffect(() => {
     setIsLoading(true)
-
+    setIsImgLoading(true)
     const getDetails = async () => {
       try {
         const idPelicula = Number(movieId)
@@ -76,6 +77,7 @@ function MovieDetail() {
         console.error("ijole pa" + error)
       } finally {
         setIsLoading(false)
+        setIsImgLoading(false)
       }
     }
     getDetails()
@@ -113,6 +115,10 @@ function MovieDetail() {
     return returnValue
   }
 
+  const loadImg = () => {
+    setIsImgLoading(false)
+  }
+
   return (
     <div className="relative min-h-svh pb-20 text-slate-100">
       <Header movieData={null}></Header>
@@ -131,21 +137,22 @@ function MovieDetail() {
         <div className="flex gap-10 pt-8">
           <section className="w-1/5">
             <div className="flex flex-col">
-              {isLoading && (
+              {isImgLoading && (
                 <Skeleton className="h-[383.33px] w-[262.55px] rounded-xl shadow-xl" />
               )}
 
               <div
-                className={`w-4/5 overflow-hidden rounded-xl shadow-lg ${isLoading ? "hidden" : "block"}`}
+                className={`w-4/5 overflow-hidden rounded-xl shadow-lg ${isImgLoading ? "hidden" : "block"}`}
               >
                 <img
                   src={"https://image.tmdb.org/t/p/w342" + movie?.poster_path}
                   alt="caratula"
+                  onLoad={() => loadImg()}
                 />
               </div>
               <div className="mt-4 flex h-20 items-center">
                 {isLoading && (
-                  <Skeleton className="ml-5 mr-5 mt-4 h-16 w-16 rounded-full" />
+                  <Skeleton className="ml-5 mr-5 mt-3 size-16 rounded-full" />
                 )}
 
                 <CircularProgressbar

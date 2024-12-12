@@ -5,6 +5,7 @@ import { NavLink } from "react-router"
 import { useNavigate } from "react-router"
 import { redondear } from "@/API_LOGIC"
 import { Skeleton } from "@/components/ui/skeleton"
+import { useState } from "react"
 
 type Props = {
   calificacion: number
@@ -29,12 +30,17 @@ function MovieCard({
     setMovieId(idPelicula)
     navigate("/movie/" + idPelicula)
   }
+  const [isImageLoading, setIsImageLoading] = useState(true)
+
+  const loadImg = () => {
+    setIsImageLoading(false)
+  }
 
   return (
     <div className="w-52 min-w-52 overflow-hidden">
-      {isLoading && <Skeleton className="mb-2 h-72 w-52" />}
+      {isImageLoading && <Skeleton className="h-72 w-52" />}
       <div
-        className={`group relative flex h-72 overflow-hidden rounded-md hover:cursor-pointer ${isLoading ? "hidden" : "block"}`}
+        className={`group relative flex h-72 overflow-hidden rounded-md hover:cursor-pointer ${isImageLoading ? "hidden" : "block"}`}
       >
         <Button
           onClick={changeUrl}
@@ -43,9 +49,10 @@ function MovieCard({
         >
           <div className={`w-52 overflow-hidden rounded-xl`}>
             <img
-              className="transition-transform duration-300 group-hover:scale-105"
+              className={`transition-transform duration-300 group-hover:scale-105`}
               src={imagenSrc}
               alt="movieImg"
+              onLoad={() => loadImg()}
             />
           </div>
         </Button>
