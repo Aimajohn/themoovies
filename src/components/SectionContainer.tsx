@@ -29,13 +29,7 @@ function SectionContainer({
 }: Props) {
   const arrayMovies: JSX.Element[] = []
   const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const handleWheel = (event: React.WheelEvent) => {
-    if (scrollContainerRef.current && event.deltaY !== 0) {
-      event.preventDefault()
-      // Desplazar horizontalmente en lugar de verticalmente
-      scrollContainerRef.current.scrollLeft += event.deltaY
-    }
-  }
+
   movieList?.forEach((movie) => {
     arrayMovies.push(
       <MovieCard
@@ -52,9 +46,8 @@ function SectionContainer({
 
   const skeletonList: JSX.Element[] = Array.from({ length: 17 })
   skeletonList.fill(<MovieSkeleton />, 0, 16)
-  console.log(skeletonList)
   return (
-    <div className="mb-8 w-full" ref={scrollContainerRef} onWheel={handleWheel}>
+    <div className="mb-8 w-full" ref={scrollContainerRef}>
       {isLoading && <Skeleton className="mb-6 h-8 w-60 rounded-lg" />}
 
       <h3

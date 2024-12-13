@@ -9,7 +9,6 @@ type variantT = "short" | "large"
 type Props = { pelicula: MovieT | null; variant: variantT }
 
 function TrendCard({ pelicula, variant }: Props) {
-  console.log("pelicula", pelicula)
   return (
     <div
       className={`group relative h-80 overflow-hidden rounded-xl px-6 text-slate-200 shadow-2xl before:absolute before:left-[38%] before:top-0 before:z-10 before:h-full before:w-5/6 before:bg-gradient-to-r before:to-transparent ${

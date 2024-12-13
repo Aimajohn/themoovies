@@ -6,6 +6,8 @@ import SectionContainer from "./components/SectionContainer"
 import { getMovie, MovieT, genreIdT, genres } from "./API_LOGIC"
 import GenreCard from "@/components/GenreCard"
 import TrendCard from "@/components/TrendCard"
+import { Skeleton } from "@ui/skeleton"
+import { ScrollArea, ScrollBar } from "@ui/scroll-area"
 
 const TendenciasApp = () => {
   const { id } = useParams<{ id: genreIdT }>()
@@ -20,7 +22,6 @@ const TendenciasApp = () => {
     if (id) setGenreId(id)
     const renderMovies = async () => {
       try {
-        console.log(id, "hola pa")
         const listaPelis = id
           ? await getMovie("popular", movieId, genreId)
           : await getMovie("popular", movieId, genreId)
@@ -41,14 +42,22 @@ const TendenciasApp = () => {
     <div className="relative min-h-svh py-20">
       <Header movieData={null} />
       <div className="mx-8">
-        <div className="flex gap-6">
+        {isLoading && (
+          <div className="flex gap-6">
+            <Skeleton className="h-80 grow-[1.5] rounded-xl" />
+            <Skeleton className="h-80 grow-[2.5] rounded-xl" />
+          </div>
+        )}
+        <div className={`flex gap-6 ${isLoading ? "hidden" : ""}`}>
           <TrendCard pelicula={heroMovies[0]} variant="short"></TrendCard>
           <TrendCard pelicula={heroMovies[1]} variant="large"></TrendCard>
         </div>
-
-        <div className="my-8">
-          <GenreCard setGenreId={setGenreId} />
-        </div>
+        <ScrollArea className="w-full">
+          <div className={`my-8`}>
+            <GenreCard isLoading={isLoading} setGenreId={setGenreId} />
+            <ScrollBar orientation="horizontal" />
+          </div>
+        </ScrollArea>
         <SectionContainer
           isLoading={isLoading}
           scrollType="flex-wrap"

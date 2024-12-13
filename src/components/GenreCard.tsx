@@ -7,9 +7,11 @@ import { PiMoonStarsFill, PiSwordFill } from "react-icons/pi"
 import { RiSwordFill } from "react-icons/ri"
 import { ImPacman } from "react-icons/im"
 import { genreIdT } from "@/API_LOGIC"
+import { Skeleton } from "@ui/skeleton"
 
 type Props = {
   setGenreId: React.Dispatch<React.SetStateAction<genreIdT>>
+  isLoading: boolean
 }
 
 const genres = [
@@ -56,7 +58,7 @@ const genres = [
   },
 ]
 
-const GenreCard = ({ setGenreId }: Props) => {
+const GenreCard = ({ setGenreId, isLoading }: Props) => {
   const genreButton = (genre: {
     id: number
     name: string
@@ -67,7 +69,9 @@ const GenreCard = ({ setGenreId }: Props) => {
   }
   const genresGenerator = () => {
     const genresList: JSX.Element[] = []
+    const esqueletos: JSX.Element[] = []
     genres.forEach((genre) => {
+      esqueletos.push(<Skeleton className="h-[83.98px] min-w-[226px]" />)
       genresList.push(
         <Button
           asChild
@@ -83,11 +87,18 @@ const GenreCard = ({ setGenreId }: Props) => {
         </Button>,
       )
     })
-    return genresList
+    return [genresList, esqueletos]
   }
 
   return (
-    <div className="flex gap-2 overflow-hidden">{...genresGenerator()}</div>
+    <>
+      {isLoading && (
+        <div className="mb-2 flex gap-2">{...genresGenerator()[1]}</div>
+      )}
+      <div className={`flex gap-2 ${isLoading ? "hidden" : ""}`}>
+        {...genresGenerator()[0]}
+      </div>
+    </>
   )
 }
 
