@@ -18,14 +18,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { NavLink, useParams } from "react-router"
-import {
-  getCredits,
-  getHero,
-  getMovie,
-  MovieCreditsResponseT,
-  MovieDetailedT,
-  MovieT,
-} from "@/API_LOGIC"
+import { getCredits, getHero, getMovie } from "@/API_LOGIC"
+import { MovieCreditsResponseT, MovieDetailedT, MovieT } from "@/TYPES_CREATED"
 import { redondearF } from "@/API_LOGIC"
 import SectionContainer from "./components/SectionContainer"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -84,7 +78,6 @@ function MovieDetail() {
   }, [movieId])
   type miLista = { id: number; name: string }[]
   const genreGenerator = (miLista: miLista | undefined) => {
-    console.log(miLista)
     if (!miLista) return []
     const genresList: JSX.Element[] = []
     let keymaster = 0

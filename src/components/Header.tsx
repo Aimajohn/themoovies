@@ -7,7 +7,8 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu"
-import { MovieDetailedT } from "@/API_LOGIC"
+import { MovieDetailedT } from "@/TYPES_CREATED"
+import { SearchBar } from "@components/searchBar"
 
 type Props = {
   movieData: MovieDetailedT | null
@@ -31,6 +32,7 @@ function Header({ movieData }: Props) {
         </NavigationMenuList>
       </NavigationMenu>
       <NavigationMenu className="flex w-full justify-between">
+        <SearchBar />
         <NavigationMenuList>
           {!myUrl.includes("tendencias") && !myUrl.includes("movie") && (
             <>
