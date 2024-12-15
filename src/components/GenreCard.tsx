@@ -1,12 +1,12 @@
 import React from "react"
-import { Button } from "./ui/button"
+import { Button } from "@ui/button"
 import { NavLink } from "react-router"
 import { TbHeartFilled, TbGhost2Filled } from "react-icons/tb"
 import { FaMasksTheater, FaDumpsterFire } from "react-icons/fa6"
 import { PiMoonStarsFill, PiSwordFill } from "react-icons/pi"
 import { RiSwordFill } from "react-icons/ri"
 import { ImPacman } from "react-icons/im"
-import { genreIdT } from "@/API_LOGIC"
+import { genreIdT } from "@/TYPES_CREATED"
 import { Skeleton } from "@ui/skeleton"
 
 type Props = {

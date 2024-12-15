@@ -1,6 +1,6 @@
 import { FaPlay } from "react-icons/fa"
 import { Button } from "@/components/ui/button"
-import { MovieT } from "@/API_LOGIC"
+import { MovieT } from "@/TYPES_CREATED"
 import imgPoster from "@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg"
 import { NavLink } from "react-router"
 

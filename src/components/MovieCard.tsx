@@ -1,6 +1,6 @@
 // import movieImg from '@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg'
 import { Badge, badgeVariants } from "@/components/ui/badge"
-import { Button } from "./ui/button"
+import { Button } from "@ui/button"
 import { NavLink } from "react-router"
 import { useNavigate } from "react-router"
 import { redondear } from "@/API_LOGIC"

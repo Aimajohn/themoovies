@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
-import Header from "./components/Header"
-import SectionContainer from "./components/SectionContainer"
-import Hero from "./components/Hero"
-import "./App.css"
-import Footer from "./components/Footer"
-import { getMovie, getHero, MovieT, MovieDetailedT } from "./API_LOGIC"
+import Header from "@/components/Header"
+import SectionContainer from "@/components/SectionContainer"
+import Hero from "@/components/Hero"
+import "@/App.css"
+import Footer from "@/components/Footer"
+import { getMovie, getHero } from "@/API_LOGIC"
+import { MovieT, MovieDetailedT } from "@/TYPES_CREATED"
 
 function App() {
   const [listaMovies, setListaMovies] = useState<MovieT[] | null>(null)

@@ -1,8 +1,8 @@
 import MovieCard from "@/components/MovieCard"
 import { useRef } from "react"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { MovieT, scrollT } from "@/API_LOGIC"
-import { Skeleton } from "./ui/skeleton"
+import { MovieT, scrollT } from "@/TYPES_CREATED"
+import { Skeleton } from "@ui/skeleton"
 type Props = {
   title: string
   movieList: MovieT[] | null

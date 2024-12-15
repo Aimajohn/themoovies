@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { CastMemberT } from "@/API_LOGIC"
+import { CastMemberT } from "@/TYPES_CREATED"
 import { Skeleton } from "@/components/ui/skeleton"
 type Props = { miembro: CastMemberT; isLoading: boolean }
 

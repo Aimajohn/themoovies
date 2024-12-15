@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Badge, badgeVariants } from "@/components/ui/badge"
 import { NavLink } from "react-router"
 import HeroBackground from "@/components/ui/hero-background"
-import { MovieDetailedT } from "@/API_LOGIC"
+import { MovieDetailedT } from "@/TYPES_CREATED"
 import { redondear } from "@/API_LOGIC"
 import { Separator } from "@/components/ui/separator"
 

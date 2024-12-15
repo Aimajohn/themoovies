@@ -21,7 +21,7 @@ import { NavLink, useParams } from "react-router"
 import { getCredits, getHero, getMovie } from "@/API_LOGIC"
 import { MovieCreditsResponseT, MovieDetailedT, MovieT } from "@/TYPES_CREATED"
 import { redondearF } from "@/API_LOGIC"
-import SectionContainer from "./components/SectionContainer"
+import SectionContainer from "@components/SectionContainer"
 import { Skeleton } from "@/components/ui/skeleton"
 
 function useOnUrlChange(callback: () => void) {

@@ -4,7 +4,8 @@ import {
   MovieT,
   MovieCreditsResponseT,
   MovieDetailedT,
-} from "./TYPES_CREATED"
+} from "@/TYPES_CREATED"
+
 // Header functions
 
 const api = axios.create({
