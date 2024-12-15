@@ -7,9 +7,10 @@ import {
 } from "@/TYPES_CREATED"
 
 // Header functions
+const baseURL = "https://api.themoviedb.org/3/"
 
 const api = axios.create({
-  baseURL: "https://api.themoviedb.org/3",
+  baseURL: baseURL,
   params: {
     api_key: import.meta.env.VITE_SECRET_KEY,
     language: navigator.language,
@@ -44,6 +45,21 @@ function whichSize(width: number) {
 }
 
 //Functional code
+
+export async function searchShows(keyword: string) {
+  try {
+    const urlAPi = `${baseURL}search/multi?query=${keyword}&include_adult=false&language=en-US&page=1`
+    // const urlCompleta = `${baseURL}/search/tv?api_key=${KEY}&query=${keyword}`
+    const response = await api.get(urlAPi)
+    const responsePP = response.data.results
+    console.log(responsePP)
+    return responsePP
+    // const phrase = await response.json()
+    // return phrase.results
+  } catch (error: any) {
+    console.log((error as Error).message)
+  }
+}
 
 export const getMovie = async (
   lista: listaT = "popular",
