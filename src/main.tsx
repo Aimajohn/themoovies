@@ -6,6 +6,7 @@ import App from "@/App.tsx"
 import MovieDetail from "@/MovieDetail.tsx"
 import TendenciasApp from "@/TendenciasApp.tsx"
 import "@/index.css"
+import { SearchPage } from "./SearchPage"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -14,6 +15,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/" index element={<App />} />
         <Route path="/movie/:id" element={<MovieDetail />} />
         <Route path="/tendencias/" element={<TendenciasApp />} />
+        <Route path="/search/" element={<SearchPage />} />
         <Route path="/tendencias/genero/:id" element={<TendenciasApp />} />
       </Routes>
     </BrowserRouter>
