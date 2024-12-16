@@ -46,10 +46,17 @@ function whichSize(width: number) {
 
 //Functional code
 
-export async function searchShows(keyword: string) {
+export async function searchShows(
+  keyword: string,
+  include_adult: boolean,
+  year: string,
+) {
   try {
-    const urlAPi = `${baseURL}search/multi?query=${keyword}&include_adult=false&language=en-US&page=1`
-    // const urlCompleta = `${baseURL}/search/tv?api_key=${KEY}&query=${keyword}`
+    const include18 = include_adult ? "true" : "false"
+    const url =
+      "/search/movie?query=venom&include_adult=false&language=en-US&primary_release_year=2024&page=1"
+    const urlAPi = `/search/movie?query=${keyword}&include_adult=${include18}&language=en-US&primary_release_year=${year}&page=1`
+    console.log(url)
     const response = await api.get(urlAPi)
     const responsePP = response.data.results
     console.log(responsePP)

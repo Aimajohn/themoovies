@@ -1,6 +1,6 @@
 import { Input } from "@ui/input"
 import { FaMagnifyingGlass } from "react-icons/fa6"
-import { searchShows } from "@/API_LOGIC"
+// import { searchShows } from "@/API_LOGIC"
 import { useRef, useState } from "react"
 import { useNavigate } from "react-router"
 import { useMyContext } from "@/MyContext"
@@ -12,11 +12,11 @@ export function SearchBar({}: Props) {
   const navigate = useNavigate()
   const [searchTyped, setSearchTyped] = useState("")
   const searchedValue = useRef<HTMLInputElement>(null)
-  const searchHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (!searchedValue.current) return console.log(" cagadaaaa")
-    searchShows(searchedValue.current.value)
-  }
+  // const searchHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault()
+  //   if (!searchedValue.current) return console.log(" cagadaaaa")
+  //   searchShows(searchedValue.current.value, "false", "2024")
+  // }
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTyped(e.target.value)
