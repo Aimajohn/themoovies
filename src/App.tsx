@@ -6,6 +6,7 @@ import "@/App.css"
 import Footer from "@/components/Footer"
 import { getMovie, getHero } from "@/API_LOGIC"
 import { MovieT, MovieDetailedT } from "@/TYPES_CREATED"
+import { SearchBar } from "./components/searchBar"
 
 function App() {
   const [listaMovies, setListaMovies] = useState<MovieT[] | null>(null)
@@ -26,7 +27,7 @@ function App() {
         }
         setListaMovies(pelis)
         const randomNumber = Math.floor(Math.random() * 20)
-        const movieHero = await getHero(pelis[randomNumber].id, 780)
+        const movieHero = await getHero(pelis[randomNumber].id)
         if (!movieHero) return console.error("Error: NO se pudo cargar el Hero")
         setHero(movieHero)
       } catch (error) {
@@ -48,6 +49,9 @@ function App() {
       <Header movieData={hero}></Header>
       <div className="w-full">
         <Hero movieData={hero}></Hero>
+      </div>
+      <div className="m-6 md:hidden">
+        <SearchBar />
       </div>
       <div className="m-9 mb-0 pb-20">
         <div className="scroll-fix overflow-x-scroll">

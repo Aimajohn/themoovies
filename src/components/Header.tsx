@@ -18,7 +18,7 @@ function Header({ movieData }: Props) {
   const myUrl = window.location.href
   return (
     <header className="to-to-[#000000] absolute right-0 top-0 flex w-full justify-between bg-gradient-to-b from-primary px-4 py-4">
-      <NavigationMenu>
+      <NavigationMenu className="mx-auto md:mx-0">
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavLink
@@ -26,12 +26,16 @@ function Header({ movieData }: Props) {
               id="pageLogo"
               className="w-56 lg:ml-3 lg:!block lg:w-40"
             >
-              <img className="object-fit" src={Logo} alt="The Moovies Logo" />
+              <img
+                className="w-60 md:w-40 lg:w-full"
+                src={Logo}
+                alt="The Moovies Logo"
+              />
             </NavLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <NavigationMenu className="flex w-full justify-between">
+      <NavigationMenu className="hidden w-full justify-between md:flex">
         <SearchBar />
         <NavigationMenuList>
           {!myUrl.includes("tendencias") && !myUrl.includes("movie") && (

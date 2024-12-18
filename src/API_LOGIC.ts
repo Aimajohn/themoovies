@@ -34,14 +34,14 @@ export function redondearF(numero: number | undefined) {
   return numero == 10 ? 10 : Number((Math.floor(numero * 10) / 10).toFixed(1))
 }
 
-function whichSize(width: number) {
+export function whichSize(width: number) {
   let imgWidth: number = 0
   ;[92, 154, 185, 342, 500, 780].forEach((size) => {
     if (width < size) {
       return (imgWidth = size)
     }
   })
-  return imgWidth > 0 ? imgWidth : "original"
+  return imgWidth
 }
 
 //Functional code
@@ -99,11 +99,9 @@ export const getCredits = async (id: number) => {
   }
 }
 
-export async function getHero(id: number, width: number) {
-  const posterSize = whichSize(width)
+export async function getHero(id: number) {
   const response: AxiosResponse = await api(`/movie/${id}`)
   const data: MovieDetailedT = response.data
-  console.log(posterSize)
   return data
   // if(typeof(posterSize)=="string"){
   //     console.log(`https://image.tmdb.org/t/p/${posterSize}${data.backdrop_path}`)
@@ -117,3 +115,22 @@ export async function getHero(id: number, width: number) {
   // heroMovieScore.textContent = redondear(data.vote_average)
   // movieDescriptionText.textContent = data.overview
 }
+
+// async function getHero(id, width) {
+//   const posterSize = await whichSize(width)
+//   const { data } = await api(`/movie/${id}`)
+//   if (typeof posterSize == "string") {
+//     heroMovieImg.setAttribute(
+//       "src",
+//       `https://image.tmdb.org/t/p/${posterSize}${data.backdrop_path}`,
+//     )
+//   } else {
+//     heroMovieImg.setAttribute(
+//       "src",
+//       `https://image.tmdb.org/t/p/${`w${posterSize}`}${data.poster_path}`,
+//     )
+//   }
+//   heroMovieTitle.textContent = data.title
+//   heroMovieScore.textContent = redondear(data.vote_average)
+//   movieDescriptionText.textContent = data.overview
+// }
