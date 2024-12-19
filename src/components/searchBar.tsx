@@ -30,7 +30,7 @@ export function SearchBar({}: Props) {
   }
 
   return (
-    <div>
+    <div className="mx-6">
       <form action="" onSubmit={(e) => e.preventDefault()}>
         <div className="relative flex items-center">
           <FaMagnifyingGlass

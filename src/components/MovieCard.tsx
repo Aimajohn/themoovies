@@ -37,10 +37,10 @@ function MovieCard({
   }
 
   return (
-    <div className="w-52 min-w-52 overflow-hidden">
+    <div className="overflow-hidden lg:min-w-52">
       {isImageLoading && <Skeleton className="h-72 w-52" />}
       <div
-        className={`group relative flex h-72 overflow-hidden rounded-md hover:cursor-pointer ${isImageLoading ? "hidden" : "block"}`}
+        className={`group relative flex w-40 overflow-hidden rounded-md hover:cursor-pointer lg:h-72 lg:w-auto ${isImageLoading ? "hidden" : "block"}`}
       >
         <Button
           onClick={changeUrl}
