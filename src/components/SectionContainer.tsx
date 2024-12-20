@@ -47,7 +47,7 @@ function SectionContainer({
   const skeletonList: JSX.Element[] = Array.from({ length: 17 })
   skeletonList.fill(<MovieSkeleton />, 0, 16)
   return (
-    <div className="mb-8 w-full" ref={scrollContainerRef}>
+    <div className="mb-8" ref={scrollContainerRef}>
       {isLoading && <Skeleton className="mb-6 h-8 w-60 rounded-lg" />}
 
       <h3
@@ -55,14 +55,16 @@ function SectionContainer({
       >
         {title}
       </h3>
-      <ScrollArea className="w-full">
+      <ScrollArea>
         {isLoading && [...skeletonList]}
         <div
-          className={`mb-2 w-full gap-4 ${scrollType} ${isLoading ? "hidden" : "flex"}`}
+          className={`mb-2 lg:w-full ${scrollType} ${isLoading ? "hidden" : "flex flex-wrap gap-4"}`}
         >
           {...arrayMovies}
         </div>
-        <ScrollBar orientation="horizontal" />
+        <ScrollBar
+          orientation={window.innerWidth < 775 ? "vertical" : "horizontal"}
+        />
       </ScrollArea>
       {/* <MovieCard ></MovieCard>
         <MovieCard></MovieCard>

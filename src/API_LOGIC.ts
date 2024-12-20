@@ -35,12 +35,10 @@ export function redondearF(numero: number | undefined) {
 }
 
 export function whichSize(width: number) {
-  let imgWidth: number = 0
-  ;[92, 154, 185, 342, 500, 780].forEach((size) => {
-    if (width < size) {
-      return (imgWidth = size)
-    }
-  })
+  const imgWidth: number = 0
+  for (const size of [92, 154, 185, 342, 500, 780]) {
+    if (width < size) return size
+  }
   return imgWidth
 }
 
@@ -63,7 +61,7 @@ export async function searchShows(
     return responsePP
     // const phrase = await response.json()
     // return phrase.results
-  } catch (error: any) {
+  } catch (error) {
     console.log((error as Error).message)
   }
 }

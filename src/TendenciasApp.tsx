@@ -42,7 +42,7 @@ const TendenciasApp = () => {
   return (
     <div className="relative min-h-svh py-20">
       <Header movieData={null} />
-      <div className="mx-8">
+      <div className="mx-4 lg:mx-8">
         {isLoading && (
           <div className="flex gap-6">
             <Skeleton className="h-80 grow-[1.5] rounded-xl" />
@@ -53,7 +53,7 @@ const TendenciasApp = () => {
           <TrendCard pelicula={heroMovies[0]} variant="short"></TrendCard>
           <TrendCard pelicula={heroMovies[1]} variant="large"></TrendCard>
         </div>
-        <ScrollArea className="w-full">
+        <ScrollArea className="mb-4 w-full">
           <div className={`my-8`}>
             <GenreCard isLoading={isLoading} setGenreId={setGenreId} />
             <ScrollBar orientation="horizontal" />
