@@ -17,6 +17,7 @@ import {
   SelectContent,
   SelectLabel,
 } from "@ui/select"
+import { SearchBar } from "./components/searchBar"
 
 export function SearchPage() {
   const { key } = useParams<{ key: string }>()
@@ -69,8 +70,8 @@ export function SearchPage() {
   return (
     <>
       <Header movieData={null} />
-      <div className="flex min-h-svh w-full pt-20">
-        <section className="my-8 w-1/4 rounded-xl bg-blue-50 bg-opacity-5 py-8 opacity-90">
+      <div className="flex min-h-svh w-full gap-6 px-8 pt-20">
+        <section className="my-8 hidden w-1/4 rounded-xl bg-blue-50 bg-opacity-5 py-8 opacity-90 lg:block">
           <h1 className="mb-6 text-center font-Montserrat text-xl font-bold text-slate-200">
             Tablero Proyectos
           </h1>
@@ -102,10 +103,15 @@ export function SearchPage() {
             </div>
           </div>
         </section>
-        <section className="w-full px-8 py-4 text-slate-200">
-          <div className="my-4 flex items-center justify-between rounded-lg bg-blue-200 bg-opacity-5 px-8 py-6">
-            <h1>Limita tu busqueda para obtener mejores resultados</h1>
-            <div className="flex items-center gap-2">
+        <section className="w-full py-4 text-slate-200">
+          <div className="lg:hidden">
+            <SearchBar />
+          </div>
+          <div className="my-4 flex flex-col justify-between rounded-lg bg-blue-200 bg-opacity-5 px-8 py-6 lg:flex-row lg:items-center">
+            <h1 className="mb-4 lg:mb-0">
+              Limita tu busqueda para obtener mejores resultados
+            </h1>
+            <div className="flex items-center lg:gap-2">
               <Switch onCheckedChange={(e) => checkedOnChange(e)} id="plus18" />
               <Label htmlFor="plus18">Contenido +18</Label>
               <Select onValueChange={(e) => yearOnChange(e)}>

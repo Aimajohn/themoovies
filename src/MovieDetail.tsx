@@ -200,7 +200,7 @@ function MovieDetail() {
                     Movie ({movie?.release_date})
                   </h4>
                 </div>
-                <div className="self-start lg:hidden">
+                <div className="min-w-28 self-start lg:hidden">
                   {isLoading && (
                     <Skeleton className="ml-5 mr-5 mt-3 size-16 rounded-full" />
                   )}
@@ -218,7 +218,7 @@ function MovieDetail() {
                       trailColor: "#060606",
                     })}
                   />
-                  <div className="text-center">
+                  <div className="mt-2 text-center text-sm lg:m-0 lg:text-base">
                     {isLoading && <Skeleton className="mt-2 h-3 w-24" />}
                     {isLoading && <Skeleton className="mt-3 h-3 w-24" />}
                     <p className={` ${isLoading ? "hidden" : "block"}`}>

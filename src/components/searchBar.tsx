@@ -28,7 +28,7 @@ export function SearchBar() {
   }
 
   return (
-    <div className="mx-6">
+    <div className="lg:mx-6">
       <form action="" onSubmit={(e) => e.preventDefault()}>
         <div className="relative flex items-center">
           <FaMagnifyingGlass

@@ -14,7 +14,7 @@ type Props = {
 export function MovieSkeleton() {
   return (
     <div className="mb-4 mr-4 inline-block">
-      <Skeleton className="h-72 w-52" />
+      <Skeleton className="h-60 w-40 lg:h-72 lg:w-52" />
       <Skeleton className="mt-2 h-5 w-28" />
     </div>
   )

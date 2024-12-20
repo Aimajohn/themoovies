@@ -5,12 +5,14 @@ import HeroBackground from "@/components/ui/hero-background"
 import { MovieDetailedT } from "@/TYPES_CREATED"
 import { redondear, getHeroImgURL } from "@/API_LOGIC"
 import { Separator } from "@/components/ui/separator"
+import { Skeleton } from "./ui/skeleton"
 
 type Props = {
   movieData: MovieDetailedT | null
+  isLoading: boolean
 }
 
-function Hero({ movieData }: Props) {
+function Hero({ movieData, isLoading }: Props) {
   if (!movieData) return <div>hola</div>
   const imagenSrc = getHeroImgURL(movieData)
 
@@ -19,7 +21,12 @@ function Hero({ movieData }: Props) {
 
   return (
     <div className="relative w-full overflow-hidden pb-4 pt-20 font-Montserrat text-slate-100">
-      <div className="absolute left-0 top-0 z-[-1] h-[52svh] overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-1/2 before:w-full before:bg-gradient-to-b before:from-transparent before:to-primary">
+      {isLoading && (
+        <Skeleton className="absolute left-0 top-0 z-[-1] h-[52svh] w-full overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-1/2 before:w-full before:bg-gradient-to-b before:from-transparent before:to-primary" />
+      )}
+      <div
+        className={`absolute left-0 top-0 z-[-1] h-[52svh] overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-1/2 before:w-full before:bg-gradient-to-b before:from-transparent before:to-primary ${isLoading ? "hidden" : "block"}`}
+      >
         <HeroBackground ClassName="" heroImg={imagenSrc}></HeroBackground>
       </div>
       <div className="mx-10 pt-80 lg:w-3/5 lg:pt-12 xl:w-2/5">

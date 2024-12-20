@@ -48,7 +48,7 @@ function App() {
     <div className="relative">
       <Header movieData={hero}></Header>
       <div className="w-full">
-        <Hero movieData={hero}></Hero>
+        <Hero movieData={hero} isLoading={isLoading}></Hero>
       </div>
       <div className="m-6 md:hidden">
         <SearchBar />
