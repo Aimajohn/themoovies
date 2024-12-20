@@ -5,9 +5,7 @@ import { useRef, useState } from "react"
 import { useNavigate } from "react-router"
 import { useMyContext } from "@/MyContext"
 
-type Props = {}
-
-export function SearchBar({}: Props) {
+export function SearchBar() {
   const { setSearchValue } = useMyContext()
   const navigate = useNavigate()
   const [searchTyped, setSearchTyped] = useState("")

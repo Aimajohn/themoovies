@@ -1,9 +1,9 @@
 import Header from "@components/Header"
 import { useMyContext } from "@/MyContext"
 import SectionContainer from "@components/SectionContainer"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { searchShows } from "@/API_LOGIC"
-import { MovieT, MovieDetailedT } from "@/TYPES_CREATED"
+import { MovieT } from "@/TYPES_CREATED"
 import { useParams } from "react-router"
 import { Switch } from "@ui/switch"
 import { Label } from "@ui/label"
@@ -18,17 +18,14 @@ import {
   SelectLabel,
 } from "@ui/select"
 
-type Props = {}
-
-export function SearchPage({}: Props) {
+export function SearchPage() {
   const { key } = useParams<{ key: string }>()
-  const { movieId, setMovieId, searchValue, setSearchValue } = useMyContext()
+  const { setMovieId, searchValue } = useMyContext()
   const [listaMovies, setListaMovies] = useState<MovieT[] | null>(null)
-  const [hero, setHero] = useState<MovieDetailedT | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [filters, setFilters] = useState({ includes18: false, yearMovie: "" })
 
-  const aa = useEffect(() => {
+  useEffect(() => {
     const fetchMovies = async () => {
       try {
         setIsLoading(true)
@@ -126,7 +123,7 @@ export function SearchPage({}: Props) {
           </div>
           <SectionContainer
             title={`Resultados para ${key}`}
-            isLoading={false}
+            isLoading={isLoading}
             setMovieId={setMovieId}
             scrollType="flex-wrap"
             key={0}

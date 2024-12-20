@@ -8,7 +8,6 @@ import TendenciasApp from "@/TendenciasApp.tsx"
 import "@/index.css"
 import { SearchPage } from "./SearchPage"
 import { MyContextProvider } from "@/MyContext"
-import Header from "./components/Header"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

@@ -1,4 +1,3 @@
-import heroImg from "@/imgs/m2teNSCH7sxkuXHossRJXhxPKeT.jpg"
 import { Button } from "@/components/ui/button"
 import { Badge, badgeVariants } from "@/components/ui/badge"
 import { NavLink } from "react-router"
