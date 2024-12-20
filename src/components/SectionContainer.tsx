@@ -58,7 +58,7 @@ function SectionContainer({
       <ScrollArea>
         {isLoading && [...skeletonList]}
         <div
-          className={`mb-2 lg:w-full ${scrollType} ${isLoading ? "hidden" : "flex flex-wrap gap-4"}`}
+          className={`mb-2 lg:w-full ${scrollType} ${isLoading ? "hidden" : "flex gap-4"}`}
         >
           {...arrayMovies}
         </div>

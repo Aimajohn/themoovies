@@ -5,7 +5,7 @@ type Props = { miembro: CastMemberT; isLoading: boolean }
 
 function CrewCard({ miembro, isLoading }: Props) {
   return (
-    <div className="mb-5 flex gap-3">
+    <div className="mb-5 flex min-w-32 gap-3">
       <Avatar>
         {isLoading && <Skeleton className="h-10 w-10 rounded-full" />}
 

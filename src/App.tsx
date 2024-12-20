@@ -10,6 +10,9 @@ import { SearchBar } from "./components/searchBar"
 
 function App() {
   const [listaMovies, setListaMovies] = useState<MovieT[] | null>(null)
+  const [recommendedMovies, setRecommendedMovies] = useState<MovieT[] | null>(
+    null,
+  )
   const [movieId, setMovieId] = useState<number>(Number(0))
   const [hero, setHero] = useState<MovieDetailedT | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
@@ -21,6 +24,7 @@ function App() {
       try {
         setIsLoading(true)
         const pelis = await getMovie()
+
         if (!pelis) {
           console.error("Error: No se pudieron cargar las películas.")
           return
@@ -28,6 +32,16 @@ function App() {
         setListaMovies(pelis)
         const randomNumber = Math.floor(Math.random() * 20)
         const movieHero = await getHero(pelis[randomNumber].id)
+        const recom = await getMovie(
+          "recommendations",
+          pelis[randomNumber].id,
+          "0",
+        )
+        if (!recom) {
+          console.error("Error: No se pudieron cargar las películas.")
+          return
+        }
+        setRecommendedMovies(recom)
         if (!movieHero) return console.error("Error: NO se pudo cargar el Hero")
         setHero(movieHero)
       } catch (error) {
@@ -53,7 +67,7 @@ function App() {
       <div className="m-6 md:hidden">
         <SearchBar />
       </div>
-      <div className="mx-4 mb-0 pb-20 lg:m-9">
+      <div className="mx-4 mb-0 pb-20 lg:m-9 lg:mb-0">
         <div className="scroll-fix overflow-x-scroll">
           <SectionContainer
             isLoading={isLoading}
@@ -66,7 +80,7 @@ function App() {
           <SectionContainer
             isLoading={isLoading}
             setMovieId={setMovieId}
-            movieList={listaMovies}
+            movieList={recommendedMovies}
             title="Películas Similares"
           ></SectionContainer>
         </div>

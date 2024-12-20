@@ -50,7 +50,7 @@ function Hero({ movieData, isLoading }: Props) {
         </div>
       </div>
       <div className="-mt-12 mr-10 flex h-full flex-col items-end font-semibold lg:mb-12 lg:text-xl">
-        <h3 className="text-2xl font-bold">{titulo}</h3>
+        <h3 className="max-w-[50%] text-right text-2xl font-bold">{titulo}</h3>
         <div className="ml-auto w-auto">
           <Badge className={badgeVariants({ variant: "secondary" })}>
             IMBD {redondear(calificacion)}

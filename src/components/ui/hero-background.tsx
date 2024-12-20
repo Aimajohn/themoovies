@@ -7,12 +7,17 @@ import { Skeleton } from "./skeleton"
 function HeroBackground({ heroImg, ClassName }: Props) {
   const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
-    console.log("not sure")
-  }, [isLoading])
+    setIsLoading(true)
+    const myImage = new Image()
+    myImage.src = heroImg
+    myImage.onload = () => setIsLoading(false)
+
+    myImage.onload = null
+  }, [])
 
   return (
     <>
-      {isLoading && <Skeleton className="h-full w-full" />}
+      {isLoading && <Skeleton className="h-[52svh] w-full" />}
       <div
         className={`${ClassName} ${
           isLoading ? "hidden" : "block"
