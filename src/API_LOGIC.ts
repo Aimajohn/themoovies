@@ -19,6 +19,17 @@ const api = axios.create({
 
 // Helper functions
 
+export const getHeroImgURL = (movieData: MovieDetailedT) => {
+  const ancho = whichSize(window.innerWidth)
+
+  const imagenSrc =
+    "https://image.tmdb.org/t/p/" +
+    (ancho == 0
+      ? `original${movieData?.backdrop_path}`
+      : `w${ancho}${movieData?.poster_path}`)
+  return imagenSrc
+}
+
 export function redondear(numero: number) {
   // const valido =  numero !== "" && numero !== null  && !isNaN(Number(numero))
   // if (!valido) return "-"

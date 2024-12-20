@@ -53,7 +53,7 @@ function App() {
       <div className="m-6 md:hidden">
         <SearchBar />
       </div>
-      <div className="m-9 mb-0 pb-20">
+      <div className="mx-4 mb-0 pb-20 lg:m-9">
         <div className="scroll-fix overflow-x-scroll">
           <SectionContainer
             isLoading={isLoading}

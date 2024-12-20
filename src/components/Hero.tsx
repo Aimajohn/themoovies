@@ -3,22 +3,16 @@ import { Badge, badgeVariants } from "@/components/ui/badge"
 import { NavLink } from "react-router"
 import HeroBackground from "@/components/ui/hero-background"
 import { MovieDetailedT } from "@/TYPES_CREATED"
-import { redondear } from "@/API_LOGIC"
+import { redondear, getHeroImgURL } from "@/API_LOGIC"
 import { Separator } from "@/components/ui/separator"
-import { whichSize } from "@/API_LOGIC"
 
 type Props = {
   movieData: MovieDetailedT | null
 }
 
 function Hero({ movieData }: Props) {
-  const ancho = whichSize(window.innerWidth)
-
-  const imagenSrc =
-    "https://image.tmdb.org/t/p/" +
-    (ancho == 0
-      ? `original${movieData?.backdrop_path}`
-      : `w${ancho}${movieData?.poster_path}`)
+  if (!movieData) return <div>hola</div>
+  const imagenSrc = getHeroImgURL(movieData)
 
   const titulo = movieData?.title || "Titulo"
   const calificacion = movieData?.vote_average ?? 0

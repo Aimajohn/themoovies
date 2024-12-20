@@ -20,7 +20,7 @@ import {
 import { NavLink, useParams } from "react-router"
 import { getCredits, getHero, getMovie } from "@/API_LOGIC"
 import { MovieCreditsResponseT, MovieDetailedT, MovieT } from "@/TYPES_CREATED"
-import { redondearF } from "@/API_LOGIC"
+import { redondearF, getHeroImgURL } from "@/API_LOGIC"
 import SectionContainer from "@components/SectionContainer"
 import { Skeleton } from "@/components/ui/skeleton"
 
@@ -55,7 +55,7 @@ function MovieDetail() {
         if (isNaN(idPelicula)) throw new Error("Parametro no es un numero")
 
         const [pelicula, lista, actores] = await Promise.all([
-          getHero(idPelicula, 780),
+          getHero(idPelicula),
           getMovie("recommendations", Number(id), "0"),
           getCredits(Number(id)),
         ])
@@ -120,15 +120,12 @@ function MovieDetail() {
 
         <HeroBackground
           ClassName={`${isLoading ? "hidden" : ""}`}
-          heroImg={
-            "https://image.tmdb.org/t/p/original/" + movie?.backdrop_path ||
-            heroImg
-          }
+          heroImg={movie ? getHeroImgURL(movie) : heroImg}
         ></HeroBackground>
       </div>
-      <div className="relative ml-24 mr-8 pt-64">
-        <div className="flex gap-10 pt-8">
-          <section className="w-1/5">
+      <div className="relative px-4 pt-64 lg:ml-24 lg:px-0">
+        <div className="relative flex flex-col gap-10 pt-8 lg:flex-row lg:gap-0">
+          <section className="hidden lg:block lg:w-1/5">
             <div className="flex flex-col">
               {isImgLoading && (
                 <Skeleton className="h-[383.33px] w-[262.55px] rounded-xl shadow-xl" />
@@ -174,26 +171,66 @@ function MovieDetail() {
               </div>
             </div>
           </section>
-          <section className="w-3/5">
+          <section className="order-1 lg:order-2 lg:w-3/5">
             <article>
-              {isLoading && <Skeleton className="mb-2 h-7 w-56 rounded-full" />}
-              <h1
-                className={`font-Poppins text-3xl font-bold tracking-wide ${isLoading ? "hidden" : "block"}`}
-              >
-                {movie?.title}
-              </h1>
-              {isLoading && <Skeleton className="my-3 h-3 w-24 rounded-full" />}
-              <p
-                className={`text-sm font-light leading-loose ${isLoading ? "hidden" : "block"}`}
-              >
-                Original title: {movie?.original_title}
-              </p>
-              {isLoading && <Skeleton className="my-5 h-5 w-36 rounded-full" />}
-              <h4
-                className={`font-semibold leading-loose text-slate-200 ${isLoading ? "hidden" : "block"}`}
-              >
-                Movie ({movie?.release_date})
-              </h4>
+              <div className="flex items-center justify-between">
+                <div>
+                  {isLoading && (
+                    <Skeleton className="mb-2 h-7 w-56 rounded-full" />
+                  )}
+                  <h1
+                    className={`font-Poppins text-3xl font-bold tracking-wide ${isLoading ? "hidden" : "block"}`}
+                  >
+                    {movie?.title}
+                  </h1>
+                  {isLoading && (
+                    <Skeleton className="my-3 h-3 w-24 rounded-full" />
+                  )}
+                  <p
+                    className={`text-sm font-light leading-loose ${isLoading ? "hidden" : "block"}`}
+                  >
+                    Original title: {movie?.original_title}
+                  </p>
+                  {isLoading && (
+                    <Skeleton className="my-5 h-5 w-36 rounded-full" />
+                  )}
+                  <h4
+                    className={`font-semibold leading-loose text-slate-200 ${isLoading ? "hidden" : "block"}`}
+                  >
+                    Movie ({movie?.release_date})
+                  </h4>
+                </div>
+                <div className="self-start lg:hidden">
+                  {isLoading && (
+                    <Skeleton className="ml-5 mr-5 mt-3 size-16 rounded-full" />
+                  )}
+
+                  <CircularProgressbar
+                    className={`mx-auto h-16 font-bold ${isLoading ? "hidden" : "block"}`}
+                    strokeWidth={7.5}
+                    maxValue={10}
+                    value={redondearF(movie?.vote_average)}
+                    text={`${redondearF(movie?.vote_average)}`}
+                    styles={buildStyles({
+                      pathColor: `rgb(234, 179, 8)`,
+                      textColor: "#f3f7f2",
+                      textSize: "2rem",
+                      trailColor: "#060606",
+                    })}
+                  />
+                  <div className="text-center">
+                    {isLoading && <Skeleton className="mt-2 h-3 w-24" />}
+                    {isLoading && <Skeleton className="mt-3 h-3 w-24" />}
+                    <p className={` ${isLoading ? "hidden" : "block"}`}>
+                      <b>{movie?.vote_count} </b>ratings
+                    </p>
+                    <p className={` ${isLoading ? "hidden" : "block"}`}>
+                      <b>{movie?.popularity} </b>views
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div></div>
               <div className="my-4 flex items-center gap-3 pt-1">
                 {isLoading && (
                   <Skeleton className="h-12 w-[168.72px] rounded-lg" />
@@ -234,7 +271,7 @@ function MovieDetail() {
               </div>
               {isLoading && <Skeleton className="mb-2 h-32 w-4/5" />}
               <p
-                className={`my-8 w-4/5 text-slate-200 ${isLoading ? "hidden" : "block"}`}
+                className={`my-8 text-slate-200 lg:w-4/5 ${isLoading ? "hidden" : "block"}`}
               >
                 {movie
                   ? movie.overview
@@ -278,19 +315,21 @@ function MovieDetail() {
               </Table>
             </article>
           </section>
-          <section className="w-1/5">
+          <section className="order-3 lg:w-1/5">
             {isLoading && <Skeleton className="mb-5 h-5 w-28 rounded-full" />}
             <h3
               className={`mb-4 font-Poppins text-xl font-bold tracking-wide ${isLoading ? "hidden" : "block"}`}
             >
               Cast & Crew
             </h3>
-            <div>{crewCast ? castGenerator(crewCast) : "None"}</div>
+            <div className="flex gap-4 overflow-scroll lg:flex-col lg:gap-0 lg:overflow-clip">
+              {crewCast ? castGenerator(crewCast) : "None"}
+            </div>
             {/* <Button>Show all</Button> */}
           </section>
         </div>
       </div>
-      <div className="m-14 ml-24">
+      <div className="mx-4 lg:m-14 lg:ml-24">
         <SectionContainer
           isLoading={isLoading}
           setMovieId={setMovieId}
