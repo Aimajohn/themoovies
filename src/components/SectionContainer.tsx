@@ -36,10 +36,8 @@ function SectionContainer({
         isLoading={isLoading}
         setMovieId={setMovieId}
         key={movie.id}
-        calificacion={movie.vote_average}
+        movieInfo={movie}
         idPelicula={movie.id}
-        titulo={movie.title}
-        imagenSrc={"https://image.tmdb.org/t/p/w342/" + movie.poster_path}
       ></MovieCard>,
     )
   })

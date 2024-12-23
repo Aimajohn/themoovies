@@ -6,34 +6,35 @@ import { useNavigate } from "react-router"
 import { redondear } from "@/API_LOGIC"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useState } from "react"
+import { MovieT } from "@/TYPES_CREATED"
 
 type Props = {
-  calificacion: number
-  imagenSrc: string
-  titulo: string
   idPelicula: number
   isLoading: boolean
   setMovieId: React.Dispatch<React.SetStateAction<number>>
+  movieInfo: MovieT
 }
 
-function MovieCard({
-  calificacion,
-  imagenSrc,
-  titulo,
-  idPelicula,
-  isLoading,
-  setMovieId,
-}: Props) {
+function MovieCard({ idPelicula, isLoading, movieInfo, setMovieId }: Props) {
   const navigate = useNavigate()
   const changeUrl = () => {
     window.scroll(0, 0)
-    setMovieId(idPelicula)
-    navigate("/movie/" + idPelicula)
+    setMovieId(movieInfo.id)
+    navigate("/movie/" + movieInfo)
   }
   const [isImageLoading, setIsImageLoading] = useState(true)
 
   const loadImg = () => {
     setIsImageLoading(false)
+  }
+  type miListaT = {
+    [key: number]: MovieT
+  }
+
+  const handlerFavourites = (movieDetails: MovieT, pelicula: number) => {
+    const myLista: miListaT = {}
+    myLista[pelicula] = movieDetails
+    console.log(myLista)
   }
 
   return (
@@ -50,13 +51,14 @@ function MovieCard({
           <div className={`w-52 overflow-hidden rounded-xl`}>
             <img
               className={`transition-transform duration-300 group-hover:scale-105`}
-              src={imagenSrc}
+              src={"https://image.tmdb.org/t/p/w342/" + movieInfo.poster_path}
               alt="movieImg"
               onLoad={() => loadImg()}
             />
           </div>
         </Button>
         <Button
+          onClick={() => handlerFavourites(movieInfo, idPelicula)}
           className="absolute right-0 top-0 m-2"
           size="icon"
           variant="love"
@@ -70,7 +72,7 @@ function MovieCard({
           }
           variant="imbd"
         >
-          IMDB {redondear(calificacion)}
+          IMDB {redondear(movieInfo.vote_average)}
         </Badge>
       </div>
       {isLoading && <Skeleton className="h-4 w-36 rounded-full" />}
@@ -81,9 +83,9 @@ function MovieCard({
         {
           <NavLink
             className="truncate text-ellipsis"
-            to={"/movie/" + idPelicula}
+            to={"/movie/" + movieInfo.id}
           >
-            {titulo}
+            {movieInfo.title}
           </NavLink>
         }
       </Button>
