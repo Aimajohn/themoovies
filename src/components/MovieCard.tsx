@@ -19,8 +19,8 @@ function MovieCard({ idPelicula, isLoading, movieInfo, setMovieId }: Props) {
   const navigate = useNavigate()
   const changeUrl = () => {
     window.scroll(0, 0)
-    setMovieId(movieInfo.id)
-    navigate("/movie/" + movieInfo)
+    setMovieId(idPelicula)
+    navigate("/movie/" + idPelicula)
   }
   const [isImageLoading, setIsImageLoading] = useState(true)
 
@@ -83,7 +83,7 @@ function MovieCard({ idPelicula, isLoading, movieInfo, setMovieId }: Props) {
         {
           <NavLink
             className="truncate text-ellipsis"
-            to={"/movie/" + movieInfo.id}
+            to={"/movie/" + idPelicula}
           >
             {movieInfo.title}
           </NavLink>

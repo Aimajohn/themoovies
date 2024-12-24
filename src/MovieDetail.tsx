@@ -112,6 +112,18 @@ function MovieDetail() {
     setIsImgLoading(false)
   }
 
+  type miListaT = {
+    [key: number]: MovieDetailedT | null
+  }
+  const handlerFavourites = (
+    movieDetails: MovieDetailedT,
+    pelicula: number,
+  ) => {
+    const myLista: miListaT = {}
+    myLista[pelicula] = movieDetails
+    console.log(myLista)
+  }
+
   return (
     <div className="relative min-h-svh pb-20 text-slate-100">
       <Header movieData={null}></Header>
@@ -255,6 +267,7 @@ function MovieDetail() {
                 )}
 
                 <Button
+                  onClick={() => handlerFavourites(movie, movieId)}
                   className={`${isLoading ? "hidden" : ""}`}
                   size="iconMain"
                   variant="ghost"

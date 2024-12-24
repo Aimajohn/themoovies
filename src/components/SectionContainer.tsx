@@ -37,7 +37,7 @@ function SectionContainer({
         setMovieId={setMovieId}
         key={movie.id}
         movieInfo={movie}
-        idPelicula={movie.id}
+        idPelicula={Number(movie.id)}
       ></MovieCard>,
     )
   })
