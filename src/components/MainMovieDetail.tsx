@@ -86,7 +86,6 @@ export function MainMovieDetail({ crewCast, movie, isLoading }: Props) {
   }
 
   useEffect(() => {
-    setIsImgLoading(true)
     favButton.current?.classList.remove("active")
     setIsFav(false)
     try {
@@ -121,7 +120,7 @@ export function MainMovieDetail({ crewCast, movie, isLoading }: Props) {
             />
           </div>
           <div className="mt-4 flex h-20 items-center">
-            {isLoading && (
+            {isLoading && isImgLoading && (
               <Skeleton className="ml-5 mr-5 mt-3 size-16 rounded-full" />
             )}
 

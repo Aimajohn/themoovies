@@ -6,6 +6,8 @@ import { MovieDetailedT } from "@/TYPES_CREATED"
 import { redondear, getHeroImgURL } from "@/API_LOGIC"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "./ui/skeleton"
+import { useEffect, useState } from "react"
+import heroImg from "@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg"
 
 type Props = {
   movieData: MovieDetailedT | null
@@ -13,8 +15,7 @@ type Props = {
 }
 
 function Hero({ movieData, isLoading }: Props) {
-  if (!movieData) return <div>hola</div>
-  const imagenSrc = getHeroImgURL(movieData)
+  const imagenSrc = movieData ? getHeroImgURL(movieData) : heroImg
 
   const titulo = movieData?.title || "Titulo"
   const calificacion = movieData?.vote_average ?? 0

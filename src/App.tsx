@@ -54,7 +54,6 @@ function App() {
     }
 
     fetchMovies()
-    console.log(myMovies)
   }, [])
 
   // if (movies != undefined){
