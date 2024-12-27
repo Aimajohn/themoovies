@@ -205,12 +205,13 @@ export function MainMovieDetail({ crewCast, movie, isLoading }: Props) {
               className={`px-5 py-6 font-Urbanist text-lg font-semibold ${isLoading ? "hidden" : ""}`}
               variant="secondary"
             >
-              <NavLink
+              <a
                 className={"flex items-center gap-2"}
-                to={movie ? movie.homepage : "https://www.youtube.com/"}
+                target="_blank"
+                href={movie ? movie.homepage : "https://www.youtube.com/"}
               >
                 Watch trailer <FaPlay />
-              </NavLink>
+              </a>
             </Button>
             {isLoading && (
               <>
