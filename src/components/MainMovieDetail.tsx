@@ -293,7 +293,7 @@ export function MainMovieDetail({ crewCast, movie, isLoading }: Props) {
         >
           Cast & Crew
         </h3>
-        <div className="flex gap-4 overflow-scroll lg:flex-col lg:gap-0 lg:overflow-clip">
+        <div className="flex gap-4 overflow-scroll overflow-y-hidden md:overflow-clip lg:flex-col lg:gap-0">
           {crewCast ? castGenerator(crewCast) : "None"}
         </div>
         {/* <Button>Show all</Button> */}
