@@ -55,6 +55,13 @@ function SectionContainer({
       </h3>
       <ScrollArea>
         {isLoading && [...skeletonList]}
+        {!movieList?.length && (
+          <div className="flex items-center justify-center">
+            <p className="mx-4 my-2 w-full rounded-md bg-slate-500/10 py-32 text-center text-xl text-slate-200">
+              No tienes peliculas favoritas, intenta regalar corazoncitos 💖
+            </p>
+          </div>
+        )}
         <div
           className={`mb-2 lg:w-full ${scrollType} ${isLoading ? "hidden" : "flex gap-4"}`}
         >

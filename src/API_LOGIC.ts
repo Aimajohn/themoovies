@@ -88,7 +88,6 @@ export const getMovie = async (
     if (genero && genero != "0") {
       url = `/discover/movie?include_adult=false&include_video=false&language=es-EC&page=1&sort_by=popularity.desc&with_genres=${genero}`
     }
-    console.log("yup", url)
     const response: AxiosResponse = await api.get(url)
     const data: MovieT[] = response.data.results
     return data

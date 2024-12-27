@@ -7,8 +7,10 @@ import Footer from "@/components/Footer"
 import { getMovie, getHero } from "@/API_LOGIC"
 import { MovieT, MovieDetailedT } from "@/TYPES_CREATED"
 import { SearchBar } from "./components/searchBar"
+import { useLocalStorage } from "./useLocalStorage"
 
 function App() {
+  const [myMovies] = useLocalStorage("storagedMovies", "")
   const [listaMovies, setListaMovies] = useState<MovieT[] | null>(null)
   const [recommendedMovies, setRecommendedMovies] = useState<MovieT[] | null>(
     null,
@@ -52,6 +54,7 @@ function App() {
     }
 
     fetchMovies()
+    console.log(myMovies)
   }, [])
 
   // if (movies != undefined){
@@ -88,8 +91,8 @@ function App() {
           <SectionContainer
             isLoading={isLoading}
             setMovieId={setMovieId}
-            movieList={listaMovies}
-            title="Tus películas favoritas"
+            movieList={Object.values(myMovies)}
+            title="Tus películas favoritas ❤️ "
           ></SectionContainer>
         </div>
       </div>

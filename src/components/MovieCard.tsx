@@ -57,14 +57,7 @@ function MovieCard({ idPelicula, isLoading, movieInfo, setMovieId }: Props) {
             />
           </div>
         </Button>
-        <Button
-          onClick={() => handlerFavourites(movieInfo, idPelicula)}
-          className="absolute right-0 top-0 m-2"
-          size="icon"
-          variant="love"
-        >
-          ❤️
-        </Button>
+
         <Badge
           className={
             badgeVariants({ variant: "secondary" }) +

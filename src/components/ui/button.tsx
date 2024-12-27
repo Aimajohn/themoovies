@@ -15,17 +15,16 @@ const buttonVariants = cva(
           "bg-red-500 text-slate-50 shadow-sm hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90",
         outline:
           "border border-slate-200 bg-white shadow-sm hover:bg-slate-300 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
-          secondary:
+        secondary:
           "bg-secondary text-slate-900 shadow-sm hover:bg-yellow-500/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80 ",
-        ghost: 
-          "hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50",
-        link: 
-          "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
+        ghost:
+          "hover:bg-slate-100 bg-gray-800 shadow-sm hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50",
+        link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
         genre:
           "bg-slate-800 shadow-lg bg-opacity-70 text-slate-200 shadow-sm hover:bg-slate-500/80 dark:bg-slate-200 dark:text-slate-50 dark:hover:bg-slate-800/80",
-          love:
-          "bg-slate-200 text-slate-50 shadow-sm hover:bg-slate-400 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90"
-        ,
+        love: "bg-slate-200 text-slate-50 shadow-sm hover:bg-slate-400 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90",
+        selected:
+          "hover:bg-blue-400 bg-gray-800 shadow-sm hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50",
       },
       size: {
         default: "h-9 px-4 py-2",
@@ -33,14 +32,14 @@ const buttonVariants = cva(
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9 rounded-full",
         iconMain: "h-12 w-12 rounded-full",
-        genre: "px-12 py-6 rounded-lg text-3xl"
+        genre: "px-12 py-6 rounded-lg text-3xl",
       },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
     },
-  }
+  },
 )
 
 export interface ButtonProps
@@ -59,7 +58,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       />
     )
-  }
+  },
 )
 Button.displayName = "Button"
 
