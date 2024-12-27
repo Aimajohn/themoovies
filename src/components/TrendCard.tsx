@@ -11,7 +11,6 @@ type Props = { pelicula: MovieT | null; variant: variantT }
 
 function TrendCard({ pelicula, variant }: Props) {
   const backImgWidth = whichSize(window.innerWidth)
-  console.log(backImgWidth)
   const imgURL =
     backImgWidth == 0
       ? "https://image.tmdb.org/t/p/original" + pelicula?.backdrop_path

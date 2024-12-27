@@ -1,5 +1,4 @@
 import "./main.css"
-console.log("mama")
 const img = document.getElementById("imagenCool")
 const listMovies = document.getElementById("listMovies")
 
@@ -13,7 +12,7 @@ async function getConfig() {
     const phrase = await response.json()
     return phrase
   } catch (error) {
-    console.log((error as Error).message)
+    console.warn((error as Error).message)
   }
 }
 async function getPoster(imgPath: string) {
@@ -23,7 +22,7 @@ async function getPoster(imgPath: string) {
     const imgURL = `${imgBaseURL}w154/${imgPath}`
     return imgURL
   } catch (error: any) {
-    console.log((error as Error).message)
+    console.warn((error as Error).message)
   }
 }
 async function searchShows(keyword: string) {
@@ -33,7 +32,7 @@ async function searchShows(keyword: string) {
     const phrase = await response.json()
     return phrase.results
   } catch (error: any) {
-    console.log((error as Error).message)
+    console.warn((error as Error).message)
   }
 }
 

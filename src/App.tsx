@@ -19,7 +19,6 @@ function App() {
   const [hero, setHero] = useState<MovieDetailedT | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   // const [error, setError] = useState<string|null>(null)
-  console.log(movieId)
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -64,7 +63,7 @@ function App() {
     <div className="relative">
       <Header movieData={hero}></Header>
       <div className="w-full">
-        <Hero movieData={hero} isLoading={isLoading}></Hero>
+        <Hero key={movieId} movieData={hero} isLoading={isLoading}></Hero>
       </div>
       <div className="m-6 md:hidden">
         <SearchBar />

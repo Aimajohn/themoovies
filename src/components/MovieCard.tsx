@@ -27,15 +27,6 @@ function MovieCard({ idPelicula, isLoading, movieInfo, setMovieId }: Props) {
   const loadImg = () => {
     setIsImageLoading(false)
   }
-  type miListaT = {
-    [key: number]: MovieT
-  }
-
-  const handlerFavourites = (movieDetails: MovieT, pelicula: number) => {
-    const myLista: miListaT = {}
-    myLista[pelicula] = movieDetails
-    console.log(myLista)
-  }
 
   return (
     <div className="w-40 max-w-40 overflow-hidden lg:min-w-52 lg:max-w-52">

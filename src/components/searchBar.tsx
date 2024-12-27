@@ -10,11 +10,6 @@ export function SearchBar() {
   const navigate = useNavigate()
   const [searchTyped, setSearchTyped] = useState("")
   const searchedValue = useRef<HTMLInputElement>(null)
-  // const searchHandler = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault()
-  //   if (!searchedValue.current) return console.log(" cagadaaaa")
-  //   searchShows(searchedValue.current.value, "false", "2024")
-  // }
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTyped(e.target.value)

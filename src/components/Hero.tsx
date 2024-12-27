@@ -6,7 +6,6 @@ import { MovieDetailedT } from "@/TYPES_CREATED"
 import { redondear, getHeroImgURL } from "@/API_LOGIC"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "./ui/skeleton"
-import { useEffect, useState } from "react"
 import heroImg from "@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg"
 
 type Props = {

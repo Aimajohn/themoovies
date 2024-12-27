@@ -62,18 +62,16 @@ export async function searchShows(
 ) {
   try {
     const include18 = include_adult ? "true" : "false"
-    const url =
-      "/search/movie?query=venom&include_adult=false&language=en-US&primary_release_year=2024&page=1"
     const urlAPi = `/search/movie?query=${keyword}&include_adult=${include18}&language=en-US&primary_release_year=${year}&page=1`
-    console.log(url)
     const response = await api.get(urlAPi)
     const responsePP = response.data.results
-    console.log(responsePP)
     return responsePP
+    // const url =
+    //   "/search/movie?query=venom&include_adult=false&language=en-US&primary_release_year=2024&page=1"
     // const phrase = await response.json()
     // return phrase.results
   } catch (error) {
-    console.log((error as Error).message)
+    console.warn((error as Error).message)
   }
 }
 
@@ -84,7 +82,6 @@ export const getMovie = async (
 ) => {
   try {
     let url = "/movie/" + (id ? `${id}/${lista}` : lista)
-    console.log("yep", id)
     if (genero && genero != "0") {
       url = `/discover/movie?include_adult=false&include_video=false&language=es-EC&page=1&sort_by=popularity.desc&with_genres=${genero}`
     }
@@ -113,19 +110,19 @@ export async function getHero(id: number) {
   const response: AxiosResponse = await api(`/movie/${id}`)
   const data: MovieDetailedT = response.data
   return data
-  // if(typeof(posterSize)=="string"){
-  //     console.log(`https://image.tmdb.org/t/p/${posterSize}${data.backdrop_path}`)
-  //     // heroMovieImg.setAttribute('src', `https://image.tmdb.org/t/p/${posterSize}${data.backdrop_path}`)
-  // }else{
-  //     console.log(`https://image.tmdb.org/t/p/${`w${posterSize}`}${data.poster_path}`)
-  //     // heroMovieImg.setAttribute('src', `https://image.tmdb.org/t/p/${`w${posterSize}`}${data.poster_path}`)
-  // }
-
-  // heroMovieTitle.textContent = data.title
-  // heroMovieScore.textContent = redondear(data.vote_average)
-  // movieDescriptionText.textContent = data.overview
 }
 
+// if(typeof(posterSize)=="string"){
+//     console.test(`https://image.tmdb.org/t/p/${posterSize}${data.backdrop_path}`)
+//     // heroMovieImg.setAttribute('src', `https://image.tmdb.org/t/p/${posterSize}${data.backdrop_path}`)
+// }else{
+//     console.test(`https://image.tmdb.org/t/p/${`w${posterSize}`}${data.poster_path}`)
+//     // heroMovieImg.setAttribute('src', `https://image.tmdb.org/t/p/${`w${posterSize}`}${data.poster_path}`)
+// }
+
+// heroMovieTitle.textContent = data.title
+// heroMovieScore.textContent = redondear(data.vote_average)
+// movieDescriptionText.textContent = data.overview
 // async function getHero(id, width) {
 //   const posterSize = await whichSize(width)
 //   const { data } = await api(`/movie/${id}`)

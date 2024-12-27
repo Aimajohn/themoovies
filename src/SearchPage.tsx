@@ -30,7 +30,7 @@ export function SearchPage() {
     const fetchMovies = async () => {
       try {
         setIsLoading(true)
-        if (!key) return console.log("errorpa")
+        if (!key) return console.warn("Se rompio no hay key en busqueda")
         const pelis = await searchShows(
           searchValue,
           filters.includes18,

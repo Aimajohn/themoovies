@@ -6,7 +6,7 @@ import { Skeleton } from "@ui/skeleton"
 import { Button } from "@ui/button"
 import CrewCard from "@components/CrewCard"
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
-import { FaShareAlt, FaBookmark, FaPlay } from "react-icons/fa"
+import { FaShareAlt, FaPlay } from "react-icons/fa"
 import {
   Table,
   TableBody,
@@ -23,10 +23,6 @@ type Props = {
 }
 
 type miLista = { id: number; name: string }[]
-
-type miListaT = {
-  [key: number]: MovieDetailedT | null
-}
 
 export function MainMovieDetail({ crewCast, movie, isLoading }: Props) {
   const [isFav, setIsFav] = useState(false)
@@ -96,9 +92,8 @@ export function MainMovieDetail({ crewCast, movie, isLoading }: Props) {
         favButton.current?.classList.remove("active")
         setIsFav(false)
       }
-      console.log(isFav, myFavourites)
     } catch (error) {
-      console.log(error)
+      console.warn(error)
     }
   }, [myFavourites, isLoading])
 
