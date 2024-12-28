@@ -13,7 +13,7 @@ type Props = {
 
 export function MovieSkeleton() {
   return (
-    <div className="mb-4 mr-4 inline-block">
+    <div className="mb-4 mr-2 inline-block">
       <Skeleton className="h-60 w-40 lg:h-72 lg:w-52" />
       <Skeleton className="mt-2 h-5 w-28" />
     </div>
@@ -42,10 +42,10 @@ function SectionContainer({
     )
   })
 
-  const skeletonList: JSX.Element[] = Array.from({ length: 17 })
-  skeletonList.fill(<MovieSkeleton />, 0, 16)
+  const skeletonList: JSX.Element[] = Array.from({ length: 20 })
+  skeletonList.fill(<MovieSkeleton />, 0, 20)
   return (
-    <div className="mb-8" ref={scrollContainerRef}>
+    <div className="mb-6" ref={scrollContainerRef}>
       {isLoading && <Skeleton className="mb-6 h-8 w-60 rounded-lg" />}
 
       <h3

@@ -42,7 +42,7 @@ function Header({ movieData }: Props) {
             <>
               <NavigationMenuItem>
                 <NavigationMenuLink
-                  href="/tendencias"
+                  href="./tendencias"
                   className={navigationMenuTriggerStyle()}
                 >
                   Tendencias
@@ -50,7 +50,7 @@ function Header({ movieData }: Props) {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink
-                  href={movieData ? `/movie/${movieData.id}` : "/"}
+                  href={movieData ? `./movie/${movieData.id}` : "/"}
                   className={navigationMenuTriggerStyle()}
                 >
                   Peliculas Similares
@@ -60,7 +60,7 @@ function Header({ movieData }: Props) {
           )}
           <NavigationMenuItem>
             <NavigationMenuLink
-              href="https://github.com/Aimajohn"
+              href="https://github.com/Aimajohn/themoovies"
               target="_blank"
               className={navigationMenuTriggerStyle()}
             >
