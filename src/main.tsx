@@ -12,7 +12,7 @@ import { MyContextProvider } from "@/MyContext"
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <MyContextProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/themoovies/">
         <Routes>
           <Route path="/" index element={<App />} />
           <Route path="/movie/:id" element={<MovieDetail />} />

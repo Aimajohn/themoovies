@@ -9,8 +9,13 @@ type StorageT =
 export const useLocalStorage = (key: string, value: StorageT) => {
   const [storage, setStorage] = useState(() => {
     try {
-      const initialValue = window.localStorage.getItem(key)
-      return initialValue ? JSON.parse(initialValue) : value
+      const storedValue = window.localStorage.getItem(key)
+      if (storedValue) {
+        return JSON.parse(storedValue)
+      } else {
+        window.localStorage.setItem(key, JSON.stringify(value))
+        return value
+      }
     } catch (error) {
       console.warn(error, "yo no deberia aparecer")
       return value
@@ -26,6 +31,5 @@ export const useLocalStorage = (key: string, value: StorageT) => {
       return valor
     }
   }
-
   return [storage, setLocalStorage]
 }

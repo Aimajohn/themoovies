@@ -24,6 +24,7 @@ function HeroBackground({ heroImg, ClassName }: Props) {
         } lg:after:to-darkblue2 w-full bg-gray-500 after:absolute after:left-0 after:top-0 after:h-20 after:w-full lg:-mt-20 lg:after:bg-opacity-50 lg:after:bg-gradient-to-t lg:after:from-transparent`}
       >
         <img
+          className="w-full"
           src={heroImg}
           onLoad={() => setIsLoading(false)}
           alt="heroPoster"

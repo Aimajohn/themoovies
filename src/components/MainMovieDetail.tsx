@@ -28,10 +28,7 @@ export function MainMovieDetail({ crewCast, movie, isLoading }: Props) {
   const [isFav, setIsFav] = useState(false)
   const [isImgLoading, setIsImgLoading] = useState<boolean>(true)
   const favButton = useRef<HTMLSpanElement>(null)
-  const [myFavourites, setMyFavourites] = useLocalStorage(
-    "storagedMovies",
-    "{}",
-  )
+  const [myFavourites, setMyFavourites] = useLocalStorage("storagedMovies", {})
 
   const loadImg = () => {
     setIsImgLoading(false)
@@ -74,9 +71,13 @@ export function MainMovieDetail({ crewCast, movie, isLoading }: Props) {
     pelicula: number | undefined,
   ) => {
     if (!pelicula) return "upsie"
-    if (myFavourites[pelicula])
-      setMyFavourites({ ...myFavourites, [pelicula]: undefined })
-    else setMyFavourites({ ...myFavourites, [pelicula]: movieDetails })
+    if (myFavourites[pelicula]) {
+      const updatedFavourites = { ...myFavourites }
+      delete updatedFavourites[pelicula]
+      setMyFavourites(updatedFavourites)
+    } else {
+      setMyFavourites({ ...myFavourites, [pelicula]: movieDetails })
+    }
     const animatedButton = e.currentTarget.firstChild as HTMLSpanElement
     animatedButton.classList.toggle("active")
   }

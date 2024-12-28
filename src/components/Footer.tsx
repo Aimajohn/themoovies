@@ -1,4 +1,4 @@
-import Logo from "@/imgs/icon-just-books.png"
+import Logo from "@/imgs/icon-themoovies.png"
 import MooviesLogo from "@/imgs/logo.png"
 
 function Footer() {
