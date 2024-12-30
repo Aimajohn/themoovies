@@ -44,6 +44,7 @@ function SectionContainer({
 
   const skeletonList: JSX.Element[] = Array.from({ length: 20 })
   skeletonList.fill(<MovieSkeleton />, 0, 20)
+  const myElemento: JSX.Element = <div>{...skeletonList}</div>
   return (
     <div className="mb-6" ref={scrollContainerRef}>
       {isLoading && <Skeleton className="mb-6 h-8 w-60 rounded-lg" />}
@@ -54,7 +55,7 @@ function SectionContainer({
         {title}
       </h3>
       <ScrollArea>
-        {isLoading && [...skeletonList]}
+        {isLoading && myElemento}
         {!movieList?.length && (
           <div className="flex items-center justify-center">
             <p className="mx-4 my-2 w-full rounded-md bg-slate-500/10 py-32 text-center text-xl text-slate-200">

@@ -1,5 +1,5 @@
 import Logo from "@/imgs/logo2.png"
-import { NavLink } from "react-router"
+import { Link, NavLink } from "react-router"
 import {
   navigationMenuTriggerStyle,
   NavigationMenu,
@@ -17,7 +17,7 @@ type Props = {
 function Header({ movieData }: Props) {
   const myUrl = window.location.href
   return (
-    <header className="to-to-[#000000] absolute right-0 top-0 flex w-full justify-between bg-gradient-to-b from-primary px-4 py-4">
+    <header className="to-to-[#000000] absolute right-0 top-0 flex w-full justify-between bg-gradient-to-b from-primary py-4 pl-4 pr-12">
       <NavigationMenu className="mx-auto md:mx-0">
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -41,20 +41,17 @@ function Header({ movieData }: Props) {
           {!myUrl.includes("tendencias") && !myUrl.includes("movie") && (
             <>
               <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="./tendencias"
-                  className={navigationMenuTriggerStyle()}
-                >
+                <Link to="/tendencias" className={navigationMenuTriggerStyle()}>
                   Tendencias
-                </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink
-                  href={movieData ? `./movie/${movieData.id}` : "/"}
+                <Link
+                  to={movieData ? `./movie/${movieData.id}` : "/"}
                   className={navigationMenuTriggerStyle()}
                 >
                   Peliculas Similares
-                </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
             </>
           )}

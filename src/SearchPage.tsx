@@ -71,38 +71,6 @@ export function SearchPage() {
     <>
       <Header movieData={null} />
       <div className="flex min-h-svh w-full gap-6 px-8 pt-20">
-        <section className="my-8 hidden w-1/4 rounded-xl bg-blue-50 bg-opacity-5 py-8 opacity-90 lg:block">
-          <h1 className="mb-6 text-center font-Montserrat text-xl font-bold text-slate-200">
-            Tablero Proyectos
-          </h1>
-          <div className="mx-6 mb-6 overflow-hidden rounded-lg bg-slate-100 pb-4">
-            <img src={batabitAd} alt="batabit Ad" />
-            <div className="mx-4 mt-4 text-slate-800">
-              <h2 className="font-bold">Proyecto Batabit</h2>
-              <span className="font-Montserrat text-sm text-opacity-20">
-                <b className="font-semibold">Release date: </b>April 2021{" "}
-              </span>
-            </div>
-          </div>
-          <div className="mx-6 mb-6 overflow-hidden rounded-lg bg-slate-100 pb-4">
-            <img src={batabitAd} alt="batabit Ad" />
-            <div className="mx-4 mt-4 text-slate-800">
-              <h2 className="font-bold">Proyecto Batabit</h2>
-              <span className="font-Montserrat text-sm text-opacity-20">
-                <b className="font-semibold">Release date: </b>April 2021{" "}
-              </span>
-            </div>
-          </div>
-          <div className="mx-6 mb-6 overflow-hidden rounded-lg bg-slate-100 pb-4">
-            <img src={batabitAd} alt="batabit Ad" />
-            <div className="mx-4 mt-4 text-slate-800">
-              <h2 className="font-bold">Proyecto Batabit</h2>
-              <span className="font-Montserrat text-sm text-opacity-20">
-                <b className="font-semibold">Release date: </b>April 2021{" "}
-              </span>
-            </div>
-          </div>
-        </section>
         <section className="w-full py-4 text-slate-200">
           <div className="lg:hidden">
             <SearchBar />
@@ -135,6 +103,38 @@ export function SearchPage() {
             key={0}
             movieList={listaMovies}
           />
+        </section>
+        <section className="my-8 hidden w-1/4 rounded-xl bg-blue-50 bg-opacity-5 py-8 opacity-90 lg:block">
+          <h1 className="mb-6 text-center font-Montserrat text-xl font-bold text-slate-200">
+            Tablero Proyectos
+          </h1>
+          <div className="mx-6 mb-6 overflow-hidden rounded-lg bg-slate-100 pb-4">
+            <img src={batabitAd} alt="batabit Ad" />
+            <div className="mx-4 mt-4 text-slate-800">
+              <h2 className="font-bold">Proyecto Batabit</h2>
+              <span className="font-Montserrat text-sm text-opacity-20">
+                <b className="font-semibold">Release date: </b>April 2021{" "}
+              </span>
+            </div>
+          </div>
+          <div className="mx-6 mb-6 overflow-hidden rounded-lg bg-slate-100 pb-4">
+            <img src={batabitAd} alt="batabit Ad" />
+            <div className="mx-4 mt-4 text-slate-800">
+              <h2 className="font-bold">Proyecto Batabit</h2>
+              <span className="font-Montserrat text-sm text-opacity-20">
+                <b className="font-semibold">Release date: </b>April 2021{" "}
+              </span>
+            </div>
+          </div>
+          <div className="mx-6 mb-6 overflow-hidden rounded-lg bg-slate-100 pb-4">
+            <img src={batabitAd} alt="batabit Ad" />
+            <div className="mx-4 mt-4 text-slate-800">
+              <h2 className="font-bold">Proyecto Batabit</h2>
+              <span className="font-Montserrat text-sm text-opacity-20">
+                <b className="font-semibold">Release date: </b>April 2021{" "}
+              </span>
+            </div>
+          </div>
         </section>
       </div>
     </>

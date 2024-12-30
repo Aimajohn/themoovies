@@ -39,14 +39,14 @@ function MovieCard({ idPelicula, isLoading, movieInfo, setMovieId }: Props) {
           asChild
           className="h-full w-52 p-0 group-hover:cursor-pointer"
         >
-          <div className={`w-52 overflow-hidden rounded-xl`}>
+          <span className={`w-52 overflow-hidden rounded-xl`}>
             <img
               className={`transition-transform duration-300 group-hover:scale-105`}
               src={"https://image.tmdb.org/t/p/w342/" + movieInfo.poster_path}
               alt="movieImg"
               onLoad={() => loadImg()}
             />
-          </div>
+          </span>
         </Button>
 
         <Badge
