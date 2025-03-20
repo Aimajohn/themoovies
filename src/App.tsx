@@ -8,6 +8,10 @@ import { getMovie, getHero } from "@/API_LOGIC"
 import { MovieT, MovieDetailedT } from "@/TYPES_CREATED"
 import { SearchBar } from "./components/searchBar"
 import { useLocalStorage } from "./useLocalStorage"
+import { default_recom } from "./papa"
+import { default_hero } from "./papa"
+let recommendations: MovieT[] = default_recom as any
+recommendations = recommendations as MovieT[]
 
 function App() {
   const [myMovies] = useLocalStorage("storagedMovies", "")
@@ -42,11 +46,19 @@ function App() {
           console.error("Error: No se pudieron cargar las películas.")
           return
         }
-        setRecommendedMovies(recom)
+
+        if (recom.length > 0) {
+          setRecommendedMovies(recom)
+        } else {
+          setRecommendedMovies(recommendations)
+        }
+
         if (!movieHero) return console.error("Error: NO se pudo cargar el Hero")
         setHero(movieHero)
       } catch (error) {
         console.error("nos cagamos" + error)
+        setRecommendedMovies(recommendations)
+        setHero(default_hero)
       } finally {
         setIsLoading(false)
       }
