@@ -1,4 +1,3 @@
-// import movieImg from '@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg'
 import { Badge, badgeVariants } from "@/components/ui/badge"
 import { Button } from "@ui/button"
 import { NavLink } from "react-router"

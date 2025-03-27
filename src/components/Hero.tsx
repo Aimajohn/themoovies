@@ -6,7 +6,7 @@ import { MovieDetailedT } from "@/TYPES_CREATED"
 import { redondear, getHeroImgURL } from "@/API_LOGIC"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "./ui/skeleton"
-import heroImg from "@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg"
+import heroImgDefault from "@/imgs/default.png"
 
 type Props = {
   movieData: MovieDetailedT | null
@@ -14,7 +14,7 @@ type Props = {
 }
 
 function Hero({ movieData, isLoading }: Props) {
-  const imagenSrc = movieData ? getHeroImgURL(movieData) : heroImg
+  const imagenSrc = movieData ? getHeroImgURL(movieData) : heroImgDefault
 
   const titulo = movieData?.title || "Titulo"
   const calificacion = movieData?.vote_average ?? 0

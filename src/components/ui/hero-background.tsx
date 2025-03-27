@@ -1,5 +1,3 @@
-// import secoImg from '@/imgs/m2teNSCH7sxkuXHossRJXhxPKeT.jpg'
-
 type Props = { heroImg: string; ClassName: string }
 import { useState, useEffect } from "react"
 import { Skeleton } from "./skeleton"

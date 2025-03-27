@@ -3,8 +3,7 @@ import Header from "@components/Header"
 import Footer from "@components/Footer"
 import HeroBackground from "@ui/hero-background"
 import { useLocation } from "react-router"
-// import movieFace from '@/imgs/nhcSZTzQ4euUYvuiFVvyINnhAV4.jpg'
-import heroImg from "@/imgs/m2teNSCH7sxkuXHossRJXhxPKeT.jpg"
+import heroImgDefault from "@/imgs/default.png"
 import "react-circular-progressbar/dist/styles.css"
 import { getCredits, getHero, getMovie } from "@/API_LOGIC"
 import { MovieCreditsResponseT, MovieDetailedT, MovieT } from "@/TYPES_CREATED"
@@ -74,7 +73,7 @@ function MovieDetail() {
 
         <HeroBackground
           ClassName={`${isLoading ? "hidden" : ""}`}
-          heroImg={movie ? getHeroImgURL(movie) : heroImg}
+          heroImg={movie ? getHeroImgURL(movie) : heroImgDefault}
         ></HeroBackground>
       </div>
       <div className="relative px-4 pt-64 lg:ml-24 lg:px-0">
