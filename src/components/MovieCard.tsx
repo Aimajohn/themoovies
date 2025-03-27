@@ -28,10 +28,10 @@ function MovieCard({ idPelicula, isLoading, movieInfo, setMovieId }: Props) {
   }
 
   return (
-    <div className="w-40 max-w-40 overflow-hidden lg:min-w-52 lg:max-w-52">
-      {isImageLoading && <Skeleton className="h-60 w-40 lg:h-72 lg:w-52" />}
+    <div className="aspect-[3/5] h-auto w-full overflow-hidden">
+      {isImageLoading && <Skeleton className="h-full w-full" />}
       <div
-        className={`group relative flex overflow-hidden rounded-md hover:cursor-pointer lg:h-72 lg:w-auto ${isImageLoading ? "hidden" : "block"}`}
+        className={`group relative flex overflow-hidden rounded-md hover:cursor-pointer ${isImageLoading ? "hidden" : "block"}`}
       >
         <Button
           onClick={changeUrl}

@@ -9,6 +9,7 @@ type Props = {
   scrollType?: scrollT
   setMovieId: React.Dispatch<React.SetStateAction<number>>
   isLoading: boolean
+  cols?: number
 }
 
 export function MovieSkeleton() {
@@ -26,6 +27,7 @@ function SectionContainer({
   scrollType,
   setMovieId,
   isLoading,
+  cols = 1,
 }: Props) {
   const arrayMovies: JSX.Element[] = []
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -46,7 +48,7 @@ function SectionContainer({
   skeletonList.fill(<MovieSkeleton />, 0, 20)
   const myElemento: JSX.Element = <div>{...skeletonList}</div>
   return (
-    <div className="mb-6" ref={scrollContainerRef}>
+    <div className="mx-4 mb-6 w-fit lg:mx-8" ref={scrollContainerRef}>
       {isLoading && <Skeleton className="mb-6 h-8 w-60 rounded-lg" />}
 
       <h3
@@ -54,24 +56,21 @@ function SectionContainer({
       >
         {title}
       </h3>
-      <ScrollArea>
+      <div className="">
         {isLoading && myElemento}
         {!movieList?.length && (
           <div className="flex items-center justify-center">
-            <p className="mx-4 my-2 w-full rounded-md bg-slate-500/10 py-32 text-center text-xl text-slate-200">
+            <p className="mx-4 my-2 rounded-md bg-slate-500/10 py-32 text-center text-xl text-slate-200">
               No tienes peliculas favoritas, intenta regalar corazoncitos 💖
             </p>
           </div>
         )}
         <div
-          className={`mb-2 lg:w-full ${scrollType} ${isLoading ? "hidden" : "flex gap-4"}`}
+          className={`gridMoviesContainer grid w-full grid-cols-3 flex-wrap gap-4 overflow-hidden md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 ${scrollType} ${isLoading ? "hidden" : "flex"}`}
         >
           {...arrayMovies}
         </div>
-        <ScrollBar
-          orientation={window.innerWidth < 775 ? "vertical" : "horizontal"}
-        />
-      </ScrollArea>
+      </div>
       {/* <MovieCard ></MovieCard>
         <MovieCard></MovieCard>
         <MovieCard></MovieCard>

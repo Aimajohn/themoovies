@@ -95,6 +95,7 @@ function App() {
             setMovieId={setMovieId}
             movieList={recommendedMovies}
             title="Películas Similares"
+            cols={2}
           ></SectionContainer>
         </div>
         <div className="scroll-fix overflow-x-scroll">

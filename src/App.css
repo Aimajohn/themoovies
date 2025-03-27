@@ -49,4 +49,32 @@
       background-position: -1400px 0;
     }
   }
+  /* Por defecto (pantallas grandes, muestra todo) */
+  .gridMoviesContainer > *:nth-child(n + 8) {
+    display: none;
+  }
+
+  /* Extra grande (xl:grid-cols-7 → oculta después del 7mo elemento) */
+  @media (max-width: 1279px) {
+    /* xl breakpoint */
+    .gridMoviesContainer > *:nth-child(n + 6) {
+      display: none;
+    }
+  }
+
+  /* Grande (lg:grid-cols-5 → oculta después del 5to elemento) */
+  @media (max-width: 1023px) {
+    /* lg breakpoint */
+    .gridMoviesContainer > *:nth-child(n + 5) {
+      display: none;
+    }
+  }
+
+  /* Mediano (md:grid-cols-4 → oculta después del 4to elemento) */
+  @media (max-width: 767px) {
+    /* md breakpoint */
+    .gridMoviesContainer > *:nth-child(n + 4) {
+      display: none;
+    }
+  }
 }
