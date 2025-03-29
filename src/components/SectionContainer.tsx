@@ -1,12 +1,11 @@
 import MovieCard from "@/components/MovieCard"
 import { useRef } from "react"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { MovieT, scrollT } from "@/TYPES_CREATED"
 import { Skeleton } from "@ui/skeleton"
 type Props = {
   title: string
   movieList: MovieT[] | null
-  scrollType?: scrollT
+  scrollType?: boolean
   setMovieId: React.Dispatch<React.SetStateAction<number>>
   isLoading: boolean
   cols?: number
@@ -22,12 +21,11 @@ export function MovieSkeleton() {
 }
 
 function SectionContainer({
+  scrollType = false,
   title,
   movieList,
-  scrollType,
   setMovieId,
   isLoading,
-  cols = 1,
 }: Props) {
   const arrayMovies: JSX.Element[] = []
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -56,17 +54,18 @@ function SectionContainer({
       >
         {title}
       </h3>
+
       <div className="">
         {isLoading && myElemento}
         {!movieList?.length && (
           <div className="flex items-center justify-center">
-            <p className="mx-4 my-2 rounded-md bg-slate-500/10 py-32 text-center text-xl text-slate-200">
+            <p className="mx-4 my-2 rounded-md bg-slate-500/10 px-20 py-32 text-center text-xl text-slate-200">
               No tienes peliculas favoritas, intenta regalar corazoncitos 💖
             </p>
           </div>
         )}
         <div
-          className={`gridMoviesContainer grid w-full grid-cols-3 flex-wrap gap-4 overflow-hidden md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 ${scrollType} ${isLoading ? "hidden" : "flex"}`}
+          className={`${scrollType ? "" : "gridMoviesContainer"} grid w-full grid-cols-3 flex-wrap gap-4 overflow-hidden md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7`}
         >
           {...arrayMovies}
         </div>

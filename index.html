@@ -13,6 +13,11 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <meta property="og:url" content="https://aimajohn.github.io/themoovies/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="The Moovies." />
+    <meta property="og:description" content="Aplicacion de peliculas" />
+    <meta property="og:image" content="/src/assets/miniatura.png" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Moovies.</title>
@@ -20,5 +25,15 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      ;(function () {
+        const urlParams = new URLSearchParams(window.location.search)
+        const movieId = urlParams.get("movie")
+
+        if (movieId) {
+          window.location.replace(`#/movie/${movieId}`)
+        }
+      })()
+    </script>
   </body>
 </html>

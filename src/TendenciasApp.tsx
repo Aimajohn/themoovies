@@ -61,7 +61,7 @@ const TendenciasApp = () => {
         </ScrollArea>
         <SectionContainer
           isLoading={isLoading}
-          scrollType="flex-wrap"
+          scrollType={true}
           movieList={movieList}
           setMovieId={setMovieId}
           title={`Tendencias ${genreId != "0" ? "en " + genres[genreId] : ""}`}

@@ -21,6 +21,13 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/tendencias/genero/:key" element={<TendenciasApp />} />
         </Routes>
       </HashRouter>
+      <div id="fb-root"></div>
+      <script
+        async
+        defer
+        crossOrigin="anonymous"
+        src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v22.0"
+      ></script>
     </MyContextProvider>
   </StrictMode>,
 )

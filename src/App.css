@@ -77,4 +77,7 @@
       display: none;
     }
   }
+  .shareContainer > button {
+    padding: 1rem;
+  }
 }

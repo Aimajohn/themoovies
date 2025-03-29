@@ -6,6 +6,8 @@ import { Skeleton } from "@ui/skeleton"
 import { Button } from "@ui/button"
 import CrewCard from "@components/CrewCard"
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
+import { AlertDialogTrigger } from "@/components/ui/alert-dialog"
+import ShareContainer from "@/components/ShareContainer"
 import { FaShareAlt, FaPlay } from "react-icons/fa"
 import {
   Table,
@@ -102,14 +104,13 @@ export function MainMovieDetail({ crewCast, movie, isLoading }: Props) {
     <div className="relative flex flex-col gap-10 pt-8 lg:flex-row lg:gap-0">
       <section className="hidden lg:block lg:w-1/5">
         <div className="flex flex-col">
-          {isImgLoading && (
-            <Skeleton className="h-[383.33px] w-[262.55px] rounded-xl shadow-xl" />
-          )}
-
-          <div
-            className={`w-4/5 overflow-hidden rounded-xl shadow-lg ${isImgLoading ? "hidden" : "block"}`}
-          >
+          <div className={`$ w-4/5 overflow-hidden rounded-xl shadow-lg`}>
+            {isImgLoading ||
+              (isLoading && (
+                <Skeleton className="h-[383.33px] w-[262.55px] rounded-xl shadow-xl" />
+              ))}
             <img
+              className={`${isLoading || isImgLoading ? "opacity-0" : "opacity-100"}`}
               src={"https://image.tmdb.org/t/p/w342" + movie?.poster_path}
               alt="caratula"
               onLoad={() => loadImg()}
@@ -231,13 +232,13 @@ export function MainMovieDetail({ crewCast, movie, isLoading }: Props) {
               {/* <FaBookmark /> */}
               <span ref={favButton} className="heart"></span>
             </Button>
-            <Button
-              className={`${isLoading ? "hidden" : ""}`}
-              size="iconMain"
-              variant="ghost"
-            >
-              <FaShareAlt />
-            </Button>
+            <div className={`${isLoading ? "hidden" : ""}`}>
+              <ShareContainer movieId={movie?.id}>
+                <AlertDialogTrigger>
+                  <FaShareAlt />
+                </AlertDialogTrigger>
+              </ShareContainer>
+            </div>
           </div>
           {isLoading && <Skeleton className="mb-2 h-32 w-4/5" />}
           <p

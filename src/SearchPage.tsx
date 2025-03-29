@@ -99,7 +99,7 @@ export function SearchPage() {
             title={`Resultados para ${key}`}
             isLoading={isLoading}
             setMovieId={setMovieId}
-            scrollType="flex-wrap"
+            scrollType={true}
             key={0}
             movieList={listaMovies}
           />

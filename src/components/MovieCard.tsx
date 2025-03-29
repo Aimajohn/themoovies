@@ -51,7 +51,7 @@ function MovieCard({ idPelicula, isLoading, movieInfo, setMovieId }: Props) {
         <Badge
           className={
             badgeVariants({ variant: "secondary" }) +
-            " absolute bottom-0 right-0 m-2"
+            " absolute bottom-1 right-4"
           }
           variant="imbd"
         >

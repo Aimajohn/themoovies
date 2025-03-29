@@ -25,7 +25,7 @@ function Hero({ movieData, isLoading }: Props) {
         <Skeleton className="absolute left-0 top-0 z-[-1] h-[52svh] w-full overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-1/2 before:w-full before:bg-gradient-to-b before:from-transparent before:to-primary" />
       )}
       <div
-        className={`absolute left-0 top-0 z-[-1] h-[52svh] overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-1/2 before:w-full before:bg-gradient-to-b before:from-transparent before:to-primary ${isLoading ? "hidden" : "block"}`}
+        className={`absolute left-0 top-0 z-[-1] h-[52svh] w-full overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-1/2 before:w-full before:bg-gradient-to-b before:from-transparent before:to-primary ${isLoading ? "hidden" : "block"}`}
       >
         <HeroBackground ClassName="" heroImg={imagenSrc}></HeroBackground>
       </div>

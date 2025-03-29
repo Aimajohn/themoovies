@@ -9,7 +9,7 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": "/dist/",
+    "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],

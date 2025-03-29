@@ -95,7 +95,7 @@ function App() {
             setMovieId={setMovieId}
             movieList={recommendedMovies}
             title="Películas Similares"
-            cols={2}
+            scrollType={true}
           ></SectionContainer>
         </div>
         <div className="scroll-fix overflow-x-scroll">
@@ -107,7 +107,7 @@ function App() {
           ></SectionContainer>
         </div>
       </div>
-      <Footer></Footer>
+      <Footer />
     </div>
   )
 }

@@ -89,7 +89,7 @@ function MovieDetail() {
           setMovieId={setMovieId}
           movieList={recommended}
           title="Recomendaciones"
-          scrollType="flex-wrap"
+          scrollType={true}
         ></SectionContainer>
       </div>
 
