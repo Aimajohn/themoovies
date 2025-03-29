@@ -46,7 +46,7 @@ function SectionContainer({
   skeletonList.fill(<MovieSkeleton />, 0, 20)
   const myElemento: JSX.Element = <div>{...skeletonList}</div>
   return (
-    <div className="mx-4 mb-6 w-fit lg:mx-8" ref={scrollContainerRef}>
+    <div className="mx-4 mb-6 lg:mx-8" ref={scrollContainerRef}>
       {isLoading && <Skeleton className="mb-6 h-8 w-60 rounded-lg" />}
 
       <h3
@@ -55,11 +55,11 @@ function SectionContainer({
         {title}
       </h3>
 
-      <div className="">
+      <div>
         {isLoading && myElemento}
         {!movieList?.length && (
           <div className="flex items-center justify-center">
-            <p className="mx-4 my-2 rounded-md bg-slate-500/10 px-20 py-32 text-center text-xl text-slate-200">
+            <p className="my-2 rounded-md bg-slate-500/10 px-20 py-32 text-center text-xl text-slate-200">
               No tienes peliculas favoritas, intenta regalar corazoncitos 💖
             </p>
           </div>

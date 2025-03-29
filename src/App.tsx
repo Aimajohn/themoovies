@@ -81,31 +81,25 @@ function App() {
         <SearchBar />
       </div>
       <div className="mx-4 mb-0 pb-20 lg:m-9 lg:-mt-6 lg:mb-0">
-        <div className="scroll-fix overflow-x-scroll">
-          <SectionContainer
-            isLoading={isLoading}
-            setMovieId={setMovieId}
-            movieList={listaMovies}
-            title="Tendencias"
-          ></SectionContainer>
-        </div>
-        <div className="scroll-fix overflow-x-scroll">
-          <SectionContainer
-            isLoading={isLoading}
-            setMovieId={setMovieId}
-            movieList={recommendedMovies}
-            title="Películas Similares"
-            scrollType={true}
-          ></SectionContainer>
-        </div>
-        <div className="scroll-fix overflow-x-scroll">
-          <SectionContainer
-            isLoading={isLoading}
-            setMovieId={setMovieId}
-            movieList={Object.values(myMovies)}
-            title="Tus películas favoritas ❤️ "
-          ></SectionContainer>
-        </div>
+        <SectionContainer
+          isLoading={isLoading}
+          setMovieId={setMovieId}
+          movieList={listaMovies}
+          title="Tendencias"
+        ></SectionContainer>
+        <SectionContainer
+          isLoading={isLoading}
+          setMovieId={setMovieId}
+          movieList={Object.values(myMovies)}
+          title="Tus películas favoritas ❤️ "
+        ></SectionContainer>
+        <SectionContainer
+          isLoading={isLoading}
+          setMovieId={setMovieId}
+          movieList={recommendedMovies}
+          title="Películas Similares"
+          scrollType={true}
+        ></SectionContainer>
       </div>
       <Footer />
     </div>
