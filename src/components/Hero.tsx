@@ -22,10 +22,10 @@ function Hero({ movieData, isLoading }: Props) {
   return (
     <div className="relative w-full overflow-hidden pb-4 pt-20 font-Montserrat text-slate-100">
       {isLoading && (
-        <Skeleton className="absolute left-0 top-0 z-[-1] h-[52svh] w-full overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-1/2 before:w-full before:bg-gradient-to-b before:from-transparent before:to-primary" />
+        <Skeleton className="mask-fade-bottom absolute left-0 top-0 z-[-1] h-[52svh] w-full overflow-hidden before:absolute" />
       )}
       <div
-        className={`absolute left-0 top-0 z-[-1] h-[52svh] w-full overflow-hidden before:absolute before:bottom-0 before:left-0 before:h-1/2 before:w-full before:bg-gradient-to-b before:from-transparent before:to-primary ${isLoading ? "hidden" : "block"}`}
+        className={`mask-fade-bottom absolute left-0 top-0 z-[-1] h-[52svh] w-full overflow-hidden ${isLoading ? "hidden" : "block"}`}
       >
         <HeroBackground ClassName="" heroImg={imagenSrc}></HeroBackground>
       </div>

@@ -80,4 +80,7 @@
   .shareContainer > button {
     padding: 1rem;
   }
+  .mask-fade-bottom {
+    mask-image: linear-gradient(to bottom, black 20%, transparent 95%);
+  }
 }
