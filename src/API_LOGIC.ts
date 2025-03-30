@@ -31,14 +31,7 @@ export const getHeroImgURL = (movieData: MovieDetailedT) => {
 }
 
 export function redondear(numero: number) {
-  // const valido =  numero !== "" && numero !== null  && !isNaN(Number(numero))
-  // if (!valido) return "-"
-  // const yup = Number(numero)
-  return numero == 0
-    ? "-"
-    : numero == 10
-      ? 10
-      : (Math.floor(numero * 10) / 10).toFixed(1)
+  return numero == 0 ? "-" : numero == 10 ? 10 : numero.toFixed(1)
 }
 export function redondearF(numero: number | undefined) {
   if (numero == undefined || numero == 0) return 10
@@ -79,11 +72,12 @@ export const getMovie = async (
   lista: listaT = "popular",
   id?: number,
   genero?: string,
+  page: number = 1,
 ) => {
   try {
-    let url = "/movie/" + (id ? `${id}/${lista}` : lista)
+    let url = `/movie/${!id ? lista : id + "/" + lista}${page != 1 ? "?page=" + page : ""}`
     if (genero && genero != "0") {
-      url = `/discover/movie?include_adult=false&include_video=false&language=es-EC&page=1&sort_by=popularity.desc&with_genres=${genero}`
+      url = `/discover/movie?include_adult=false&include_video=false&language=es-EC&page=1&sort_by=popularity.desc&with_genres=${genero}&page=${page}`
     }
     const response: AxiosResponse = await api.get(url)
     const data: MovieT[] = response.data.results

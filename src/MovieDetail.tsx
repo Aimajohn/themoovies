@@ -7,7 +7,7 @@ import heroImgDefault from "@/imgs/default.png"
 import "react-circular-progressbar/dist/styles.css"
 import { getCredits, getHero, getMovie } from "@/API_LOGIC"
 import { MovieCreditsResponseT, MovieDetailedT, MovieT } from "@/TYPES_CREATED"
-import SectionContainer from "@components/SectionContainer"
+import { InfiniteSection } from "@components/InfiniteSection"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useParams } from "react-router"
 import { getHeroImgURL } from "@/API_LOGIC"
@@ -29,7 +29,6 @@ function MovieDetail() {
   const [recommended, setRecommended] = useState<MovieT[] | null>(null)
   const [crewCast, setCrewCast] = useState<MovieCreditsResponseT | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
-
   useOnUrlChange(() => {
     setMovieId(Number(id))
   })
@@ -84,13 +83,13 @@ function MovieDetail() {
         />
       </div>
       <div className="mx-4 lg:m-14 lg:ml-24">
-        <SectionContainer
+        <InfiniteSection
           isLoading={isLoading}
           setMovieId={setMovieId}
           movieList={recommended}
           title="Recomendaciones"
           scrollType={true}
-        ></SectionContainer>
+        ></InfiniteSection>
       </div>
 
       <Footer></Footer>

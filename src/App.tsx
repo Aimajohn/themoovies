@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Header from "@/components/Header"
 import SectionContainer from "@/components/SectionContainer"
+import { InfiniteSection } from "@/components/InfiniteSection"
 import Hero from "@/components/Hero"
 import "@/App.css"
 import Footer from "@/components/Footer"
@@ -84,8 +85,8 @@ function App() {
         <SectionContainer
           isLoading={isLoading}
           setMovieId={setMovieId}
-          movieList={listaMovies}
-          title="Tendencias"
+          movieList={recommendedMovies}
+          title="Películas Similares"
         ></SectionContainer>
         <SectionContainer
           isLoading={isLoading}
@@ -93,13 +94,13 @@ function App() {
           movieList={Object.values(myMovies)}
           title="Tus películas favoritas ❤️ "
         ></SectionContainer>
-        <SectionContainer
+        <InfiniteSection
           isLoading={isLoading}
           setMovieId={setMovieId}
-          movieList={recommendedMovies}
-          title="Películas Similares"
+          movieList={listaMovies}
+          title="Tendencias"
           scrollType={true}
-        ></SectionContainer>
+        ></InfiniteSection>
       </div>
       <Footer />
     </div>
