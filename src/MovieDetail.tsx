@@ -75,7 +75,7 @@ function MovieDetail() {
           heroImg={movie ? getHeroImgURL(movie) : heroImgDefault}
         ></HeroBackground>
       </div>
-      <div className="relative px-4 pt-64 lg:ml-24 lg:px-0">
+      <div className="relative pt-64">
         <MainMovieDetail
           isLoading={isLoading}
           movie={movie}

@@ -101,53 +101,50 @@ export function MainMovieDetail({ crewCast, movie, isLoading }: Props) {
   }, [myFavourites, isLoading])
 
   return (
-    <div className="relative flex flex-col gap-10 pt-8 lg:flex-row lg:gap-0">
-      <section className="hidden lg:block lg:w-1/5">
-        <div className="flex flex-col">
-          <div className={`$ w-4/5 overflow-hidden rounded-xl shadow-lg`}>
-            {isImgLoading ||
-              (isLoading && (
-                <Skeleton className="h-[383.33px] w-[262.55px] rounded-xl shadow-xl" />
-              ))}
-            <img
-              className={`${isLoading || isImgLoading ? "opacity-0" : "opacity-100"}`}
-              src={"https://image.tmdb.org/t/p/w342" + movie?.poster_path}
-              alt="caratula"
-              onLoad={() => loadImg()}
-            />
-          </div>
-          <div className="mt-4 flex h-20 items-center">
-            {isLoading && isImgLoading && (
-              <Skeleton className="ml-5 mr-5 mt-3 size-16 rounded-full" />
-            )}
+    <div className="relative grid grid-cols-1 gap-10 px-4 pt-8 md:mx-auto md:w-4/5 md:grid-cols-[3fr_1fr] lg:gap-0 xl:w-full xl:grid-cols-[1fr_2fr_1fr]">
+      <section className="hidden flex-col xl:flex">
+        <div className="mx-auto w-3/5 overflow-hidden rounded-xl shadow-lg">
+          {isLoading && (
+            <Skeleton className="h-[383.33px] w-[262.55px] rounded-xl shadow-xl" />
+          )}
+          <img
+            className={`${isLoading || isImgLoading ? "hidden" : "block"}`}
+            src={"https://image.tmdb.org/t/p/w342" + movie?.poster_path}
+            alt="caratula"
+            onLoad={() => loadImg()}
+          />
+        </div>
+        <div className="mx-auto mt-4 flex h-20 w-3/5 items-center gap-2">
+          {isLoading && (
+            <Skeleton className="mx-5 aspect-square size-16 rounded-full" />
+          )}
 
-            <CircularProgressbar
-              className={`h-16 w-1/3 font-bold ${isLoading ? "hidden" : "block"}`}
-              strokeWidth={7.5}
-              maxValue={10}
-              value={redondearF(movie?.vote_average)}
-              text={`${redondearF(movie?.vote_average)}`}
-              styles={buildStyles({
-                pathColor: `rgb(234, 179, 8)`,
-                textColor: "#f3f7f2",
-                textSize: "2rem",
-                trailColor: "#060606",
-              })}
-            />
-            <div className="w-2/3">
-              {isLoading && <Skeleton className="mt-2 h-3 w-24" />}
-              {isLoading && <Skeleton className="mt-3 h-3 w-24" />}
-              <p className={` ${isLoading ? "hidden" : "block"}`}>
-                <b>{movie?.vote_count} </b>ratings
-              </p>
-              <p className={` ${isLoading ? "hidden" : "block"}`}>
-                <b>{movie?.popularity} </b>views
-              </p>
-            </div>
+          <CircularProgressbar
+            className={`h-16 w-1/3 font-bold ${isLoading ? "hidden" : "block"}`}
+            strokeWidth={7.5}
+            maxValue={10}
+            value={redondearF(movie?.vote_average)}
+            text={`${redondearF(movie?.vote_average)}`}
+            styles={buildStyles({
+              pathColor: `rgb(234, 179, 8)`,
+              textColor: "#f3f7f2",
+              textSize: "2rem",
+              trailColor: "#060606",
+            })}
+          />
+          <div className="w-2/3">
+            {isLoading && <Skeleton className="mt-2 h-3 w-24" />}
+            {isLoading && <Skeleton className="mt-3 h-3 w-24" />}
+            <p className={` ${isLoading ? "hidden" : "block"}`}>
+              <b>{movie?.vote_count} </b>ratings
+            </p>
+            <p className={` ${isLoading ? "hidden" : "block"}`}>
+              <b>{movie?.popularity} </b>views
+            </p>
           </div>
         </div>
       </section>
-      <section className="order-1 lg:order-2 lg:w-3/5">
+      <section className="mx-auto w-full">
         <article>
           <div className="flex items-center justify-between">
             <div>
@@ -284,14 +281,14 @@ export function MainMovieDetail({ crewCast, movie, isLoading }: Props) {
           </Table>
         </article>
       </section>
-      <section className="order-3 lg:w-1/5">
+      <section className="mx-auto">
         {isLoading && <Skeleton className="mb-5 h-5 w-28 rounded-full" />}
         <h3
           className={`mb-4 font-Poppins text-xl font-bold tracking-wide ${isLoading ? "hidden" : "block"}`}
         >
           Cast & Crew
         </h3>
-        <div className="flex gap-4 overflow-scroll overflow-y-hidden md:overflow-clip lg:flex-col lg:gap-0">
+        <div className="flex gap-4 overflow-scroll overflow-y-hidden md:flex-col md:overflow-clip lg:gap-0">
           {crewCast ? castGenerator(crewCast) : "None"}
         </div>
         {/* <Button>Show all</Button> */}
