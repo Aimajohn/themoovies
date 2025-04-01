@@ -13,13 +13,28 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <meta property="og:url" content="https://aimajohn.github.io/themoovies/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="The Moovies." />
+    <meta property="og:description" content="Aplicacion de peliculas" />
+    <meta property="og:image" content="/themoovies/assets/miniatura-B6L_KgjI.png" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Moovies.</title>
-    <script type="module" crossorigin src="/themoovies/assets/index-9Gqb4IU4.js"></script>
-    <link rel="stylesheet" crossorigin href="/themoovies/assets/index-D5L2_Njz.css">
+    <script type="module" crossorigin src="/themoovies/assets/index-CnfDirvh.js"></script>
+    <link rel="stylesheet" crossorigin href="/themoovies/assets/index-CxulE_Dl.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      ;(function () {
+        const urlParams = new URLSearchParams(window.location.search)
+        const movieId = urlParams.get("movie")
+
+        if (movieId) {
+          window.location.replace(`#/movie/${movieId}`)
+        }
+      })()
+    </script>
   </body>
 </html>
